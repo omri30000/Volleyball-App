@@ -6,10 +6,24 @@ import Helper
 
 LISTEN_PORT = 2019
 VALID_PLAYERS_FILE_NAME = "Players.txt"
-ATTENDING_EVENT_FILE_NAME = "20_2_2020.txt"
+ATTENDING_EVENT_FILE_NAME = ""
 
 def main():
-    pass
+    print("Welcome to Volleyball server made by Ofir and Omri\n")
+    print("**Entering details of next training**")
+    
+    create_new_event()
+
+    l_socket = build_server()
+    manage_server(l_socket)
+
+
+def create_new_event():
+    day = input("Enter day of training (1-31): ")
+    month = input("Enter month of training (1-12): ")
+    year = input("Enter year of training (2020-...): ")
+
+    ATTENDING_EVENT_FILE_NAME = day + '_' + month + '_' + year + ".txt"
 
 def build_server():
     # parse data base file to internal dict data base
@@ -53,12 +67,16 @@ def manage_conversation(client_soc):
 
     print(player_name)
 
-    if check_if_user_known(player_name, VALID_PLAYERS_FILE_NAME):
-        pass
+    if "100" in client_msg:
+        if check_if_user_known(player_name, VALID_PLAYERS_FILE_NAME):
+            attending_players = Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME)
+            valid_players = Helper.read_file_to_dict(VALID_PLAYERS_FILE_NAME)
 
+            attending_players[player_name] = valid_players[player_name]
+            client_soc.sendall("$200#OK$".encode())
 
-    #client_soc.sendall("your input is invalid, try again!".encode())
-    pass
+        else:
+            client_soc.sendall("$300#INVALID_USER$".encode())
 
 def check_if_user_known(user_name, database_file):
     """
