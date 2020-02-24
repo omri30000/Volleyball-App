@@ -27,7 +27,7 @@ def create_new_event():
 
 def build_server():
     # parse data base file to internal dict data base
-    data_base = Helper.read_file_to_dict("players.txt")
+    #data_base = Helper.read_file_to_dict("players.txt")
     
     # Create a TCP/IP socket
     listening_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -73,6 +73,7 @@ def manage_conversation(client_soc):
             valid_players = Helper.read_file_to_dict(VALID_PLAYERS_FILE_NAME)
 
             attending_players[player_name] = valid_players[player_name]
+            Helper.write_dict_to_file(attending_players,ATTENDING_EVENT_FILE_NAME)
             client_soc.sendall("$200#OK$".encode())
 
         else:
