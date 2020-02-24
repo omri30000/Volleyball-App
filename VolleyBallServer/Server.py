@@ -13,7 +13,7 @@ def main():
     print("**Entering details of next training**")
     
     create_new_event()
-
+    print(ATTENDING_EVENT_FILE_NAME)
     l_socket = build_server()
     manage_server(l_socket)
 
@@ -23,11 +23,14 @@ def create_new_event():
     month = input("Enter month of training (1-12): ")
     year = input("Enter year of training (2020-...): ")
 
+    global ATTENDING_EVENT_FILE_NAME 
+    
     ATTENDING_EVENT_FILE_NAME = day + '_' + month + '_' + year + ".txt"
+    
 
 def build_server():
     # parse data base file to internal dict data base
-    data_base = Helper.read_file_to_dict("players.txt")
+    data_base = Helper.read_file_to_dict(VALID_PLAYERS_FILE_NAME)
     
     # Create a TCP/IP socket
     listening_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -48,7 +51,7 @@ def manage_server(listening_sock):
         # from now on, the client and server are connected
 
         try:
-            _thread.start_new_thread(manage_conversation, client_soc)
+            _thread.start_new_thread(manage_conversation, (client_soc,1))
             count_users += 1
 
 
@@ -58,7 +61,9 @@ def manage_server(listening_sock):
     listening_sock.close()  # isn't necessary because the server will be closed manually
 
 
-def manage_conversation(client_soc):
+def manage_conversation(client_soc, u):
+    print("start converstion with user")
+    client_soc.sendall("$400#SUCCESS$".encode())
     client_msg = client_soc.recv(2048).decode()
 
     player_name = client_msg[client_msg.find("#") + 1:]
@@ -67,7 +72,7 @@ def manage_conversation(client_soc):
 
     print(player_name)
 
-    if "100" in client_msg:
+    if "$100#" in client_msg:
         if check_if_user_known(player_name, VALID_PLAYERS_FILE_NAME):
             attending_players = Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME)
             valid_players = Helper.read_file_to_dict(VALID_PLAYERS_FILE_NAME)

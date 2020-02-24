@@ -18,13 +18,21 @@ def read_file_to_dict(file_name):
     input: dict of players and name of file
     output: dict of players
     '''
+    #print("--rftd--")
+    #print("name: " + file_name)
     with open(file_name, 'r') as file:
-        players = eval(file.read()) 
+        if not check_if_file_empty(file): # file not empty
+            players = eval(file.read()) 
+        else:
+            players = {}
+
     return players
 
-
-def from_dict_to_list(dict_val):
-    list_val = []
-    for part in dict_val.items():
-        list_val.append(tuple(part))
-    return list_val
+def check_if_file_empty(my_file):
+    my_file.seek(0) #ensure you're at the start of the file..
+    first_char = my_file.read(1) #get the first character
+    if not first_char:
+        return True
+    else:
+        my_file.seek(0) #first character wasn't empty, return to start of file.
+        return False
