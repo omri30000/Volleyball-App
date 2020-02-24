@@ -1,0 +1,1 @@
+{"ofir shapira": 1, "omri zaiman": 1, "ariel gorovoy": 1, "eitan dubinsky": 1, "aviv mizrahi": 1, "eyal berkovich": 1, "shahar lipshitz": 1, "maxim hait": 1, "noam bar": 1, "raz gatenio": 1, "roy shalev": 1, "sally shapsa": 1, "shahaf levi": 1, "shahar rozenberg": 1,  "shon goldyuk": 1, "barak moyal": 1, "shaked mori": 1, "liav mamman": 1, "netanel leibovich": 1}
