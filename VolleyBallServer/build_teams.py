@@ -25,15 +25,17 @@ def from_dict_to_sorted_list(players):
     parts =Helper.from_dict_to_list(players)
     return sorted(parts,key = by_value,reverse= True)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d759b8cfddce55756d2a894b336afa9b5f50a141
 def divide_teams_smart(players):
     parts = from_dict_to_sorted_list(players)
-    team1,team2 = fill_teams(players,[],[])
+    return fill_teams(players,[],[])
 
 
 
 def fill_teams(players,team1,team2):
-    
-    
     if len(players) == 0:
         return abs(get_team_level(team2) - get_team_level(team1))
 
@@ -61,17 +63,29 @@ def fill_teams(players,team1,team2):
     del team1_copy[-1]
     team2_copy += [player]
     try:
-        val2, team1_copy2,team2_copy = fill_teams(players,team1_copy,team2_copy)
+        val2, team1_copy2,team2_copy2 = fill_teams(players,team1_copy,team2_copy)
 
         del team2_copy[-1]
     except:
         cond2 = False
 
-    if not cond and not cond2:
+
+    if cond1 and cond2:
+        if val1<val2:
+            return val1,team1_copy1,team2_copy1 
+        else:
+            return val2,team1_copy2,team2_copy2
+    elif cond1:
+        return val1,team1_copy1,team2_copy1 
+    elif cond2:
+         return val2,team1_copy2,team2_copy2
+
+    
+    else:
         raise "error mate"
 
-
-
+    
+    
     team2[player[0]] = player[1] 
     del team1[player[0]]
 

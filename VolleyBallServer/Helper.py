@@ -36,3 +36,9 @@ def check_if_file_empty(my_file):
     else:
         my_file.seek(0) #first character wasn't empty, return to start of file.
         return False
+
+def from_dict_to_list(dictt):
+    parts = []
+    for i in dictt.items():
+        parts += [i]
+    return parts
