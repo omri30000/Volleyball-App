@@ -2,6 +2,8 @@ team_one ={}
 team_two ={}
 
 def divide_teams(players): #dict of { players : level }
+    players.sort(key = by_value)
+    
     team_one ={}
     team_two = {}
     players_num = 1
@@ -16,6 +18,9 @@ def divide_teams(players): #dict of { players : level }
         if players_num > 1 :
             players_num = 0
             team +=1
+
+def by_value(tup):
+    return tup[1]
 
 """
 def add_next(players,team1,team2):
