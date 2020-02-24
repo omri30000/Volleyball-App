@@ -6,14 +6,14 @@ import ssl
 #consts
 
 OMRI_EMAIL = "omri162004@gmail.com"
-OFIR_EMAIL = "omri162004@gmail.com"
-SERVER_EMAIL = "mosmospyt@gmail.com"
+OFIR_EMAIL = "ofirs2003@gmail.com"
+SERVER_EMAIL = "volleyballmotzkin@gmail.com"
 MAIL_PORT = 465
 
 def team_to_str(team):
     mes = ""
     for i in range(0,len(team)):
-        mes += (str(i) +'.' + team[i][0])
+        mes += (str(i) +'.'+str(team[i][0]))
     return mes
 
 def send_email(mail_server,email,teams):
@@ -30,9 +30,8 @@ def manage_mail(team1,team2):
     context = ssl.create_default_context()
 
     mail_server = smtplib.SMTP_SSL("smtp.gmail.com", MAIL_PORT, context=context)
-    mail_server.login(SERVER_EMAIL,"Asd123874") #TODO: hide password
+    mail_server.login(SERVER_EMAIL,'moshemoshe5') #TODO: hide password
     send_email(mail_server,OMRI_EMAIL,(team1,team2))
-    send_email(mail_server,OFIR_EMAIL,(team1,team2))
 
     mail_server.quit(mail_server)
 

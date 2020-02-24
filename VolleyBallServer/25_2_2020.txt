@@ -1,1 +1,1 @@
-{'roy shalev': 7, 'ofir shapira': 10, 'omri zaiman': 10}
+{'roy shalev': 7, 'ofir shapira': 10, 'sally shapsa': 2}

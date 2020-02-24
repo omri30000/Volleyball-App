@@ -5,7 +5,7 @@ import _thread
 import Helper
 import build_teams
 import threading
-
+import Mail
 LISTEN_PORT = 2019
 VALID_PLAYERS_FILE_NAME = "Players.txt"
 ATTENDING_EVENT_FILE_NAME = ""
@@ -43,7 +43,7 @@ def build_server():
     
 
 def manage_server(listening_sock):    
-    # start listening
+    '''# start listening
     listening_sock.listen(1)
  
     threads = []
@@ -68,11 +68,13 @@ def manage_server(listening_sock):
     for x in threads:
         x.join()
 
-    listening_sock.close()  # isn't necessary because the server will be closed manually
+    listening_sock.close()  # isn't necessary because the server will be closed manually'''
 
     teams = build_teams.divide_teams(Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME))
 
     print(teams)
+    Mail.manage_mail(teams[0],teams[1])
+
 
 
 
