@@ -3,7 +3,9 @@ import re
 import collections
 import _thread
 import Helper
-
+import build_teams
+import threading
+import Mail
 LISTEN_PORT = 2019
 VALID_PLAYERS_FILE_NAME = "Players.txt"
 ATTENDING_EVENT_FILE_NAME = ""
@@ -41,24 +43,40 @@ def build_server():
     
 
 def manage_server(listening_sock):    
-    # start listening
+    '''# start listening
     listening_sock.listen(1)
-    
+ 
+    threads = []
     count_users = 0
-    while True:
+    while count_users < 3:
         # new conversation socket
         client_soc, client_address = listening_sock.accept()
         # from now on, the client and server are connected
 
         try:
-            _thread.start_new_thread(manage_conversation, (client_soc,1))
+            t = threading.Thread(target=manage_conversation, args=(client_soc,1))
+            t.start()
+            threads.append(t)
             count_users += 1
 
 
         except ConnectionResetError as e:
             print(e)
             print("Error: [WinError 10054] An existing connection was forcibly closed by the remote host")
-    listening_sock.close()  # isn't necessary because the server will be closed manually
+
+
+    for x in threads:
+        x.join()
+
+    listening_sock.close()  # isn't necessary because the server will be closed manually'''
+
+    teams = build_teams.divide_teams(Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME))
+
+    print(teams)
+    Mail.manage_mail(teams[0],teams[1])
+
+
+
 
 
 def manage_conversation(client_soc, u):
