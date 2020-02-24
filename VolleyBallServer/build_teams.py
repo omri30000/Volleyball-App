@@ -28,12 +28,12 @@ def from_dict_to_sorted_list(players):
 
 def divide_teams_smart(players):
     parts = from_dict_to_sorted_list(players)
-    return fill_teams(players,[],[])
+    return fill_teams(players,[],[],0)
 
 
 
-def fill_teams(players,team1,team2):
-    if len(players) == 0:
+def fill_teams(players,team1,team2,index):
+    if len(players) == index:
         return abs(get_team_level(team2) - get_team_level(team1))
 
 
@@ -45,7 +45,7 @@ def fill_teams(players,team1,team2):
 
     team1_copy = copy_list(team1)
     team2_copy = copy_list(team2)
-    player = players[0]
+    player = players[index]
     del players[0]
     #option one -> team 1
     #team
