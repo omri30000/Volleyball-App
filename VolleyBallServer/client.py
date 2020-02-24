@@ -20,7 +20,10 @@ def main():
     except ConnectionResetError as e:
         print("ERROR- " + str(e))
 
-    username = "roy_shalev"
+    fname = input("Enter first name: ")
+    lname = input("Enter last name: ")
+
+    username = fname + '_' + lname
     
     msg = "$100#" + username + "$"
     print(msg)

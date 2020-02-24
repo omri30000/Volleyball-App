@@ -3,6 +3,7 @@ import re
 import collections
 import _thread
 import Helper
+import build_teams
 
 LISTEN_PORT = 2019
 VALID_PLAYERS_FILE_NAME = "Players.txt"
@@ -45,7 +46,7 @@ def manage_server(listening_sock):
     listening_sock.listen(1)
     
     count_users = 0
-    while True:
+    while count_users < 4:
         # new conversation socket
         client_soc, client_address = listening_sock.accept()
         # from now on, the client and server are connected
@@ -59,6 +60,12 @@ def manage_server(listening_sock):
             print(e)
             print("Error: [WinError 10054] An existing connection was forcibly closed by the remote host")
     listening_sock.close()  # isn't necessary because the server will be closed manually
+
+    teams = build_teams.divide_teams(Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME))
+
+    print(teams)
+
+
 
 
 def manage_conversation(client_soc, u):

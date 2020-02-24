@@ -25,8 +25,6 @@ def from_dict_to_sorted_list(players):
     parts =Helper.from_dict_to_list(players)
     return sorted(parts,key = by_value,reverse= True)
 
-git
-
 def divide_teams_smart(players):
     parts = from_dict_to_sorted_list(players)
     team1,team2 = fill_teams(players,[],[])
