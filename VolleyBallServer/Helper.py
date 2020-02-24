@@ -21,3 +21,10 @@ def read_file_to_dict(file_name):
     with open(file_name, 'r') as file:
         players = eval(file.read()) 
     return players
+
+
+def from_dict_to_list(dict_val):
+    list_val = []
+    for part in dict_val.items():
+        list_val.append(tuple(part))
+    return list_val

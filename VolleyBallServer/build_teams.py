@@ -1,14 +1,12 @@
-team_one ={}
-team_two ={}
+import Helper
 
 def divide_teams(players): #dict of { players : level }
-    players.sort(key = by_value)
-    
     team_one ={}
     team_two = {}
     players_num = 1
     team = 0
-    for part in players.items():
+    parts =from_dict_to_sorted_list(players)
+    for part in parts:
         team = team %2
         if team == 0:
             team_one[part[0]] = part[1]
@@ -18,9 +16,16 @@ def divide_teams(players): #dict of { players : level }
         if players_num > 1 :
             players_num = 0
             team +=1
+    return (team_one,team_two)
 
 def by_value(tup):
     return tup[1]
+
+def from_dict_to_sorted_list(players):
+    parts =Helper.from_dict_to_list(players)
+    return sorted(parts,key = by_value,reverse= True)
+
+
 
 """
 def add_next(players,team1,team2):
