@@ -11,7 +11,7 @@ VALID_PLAYERS_FILE_NAME = "Players.txt"
 ATTENDING_EVENT_FILE_NAME = ""
 
 def main():
-    print("Welcome to Volleyball server made by Ofir and Omri\n")
+    print("Welcome to Volleyball server made by Omri and Ofir\n")
     print("**Entering details of next training**")
     
     create_new_event()

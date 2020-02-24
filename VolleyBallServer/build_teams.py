@@ -27,18 +27,18 @@ def from_dict_to_sorted_list(players):
 
 def divide_teams_smart(players):
     parts = from_dict_to_sorted_list(players)
-    return fill_teams(Helper.from_dict_to_list(players),[("ofir",10)],[],1)
+    return fill_teams(Helper.from_dict_to_list(players),[],[],0)
 
 
 
 def fill_teams(players,team1,team2,index):
-    print(index,"\n",team1,"\n",team2)
+    #print(index,"\n",team1,team2)#"\n",team1,"\n",team2)
    
     if len(players) == index:
-        return abs(get_team_level(team2) - get_team_level(team1)),team1,team2
-
-
-    if abs(len(team1) - len(team2)) > len(players) - index : # is it bigger than one
+        #print("finish")
+        return abs(get_team_level(team2) - get_team_level(team1)),copy_list(team1),copy_list(team2)
+    if abs(len(team1) - len(team2)) > len(players) - index :    
+        #print("fail")    # is it bigger than one
         raise Exception("Sorry, no numbers below zero")
 
     
@@ -46,7 +46,7 @@ def fill_teams(players,team1,team2,index):
 
     team1_copy = copy_list(team1)
     team2_copy = copy_list(team2)
-   
+    
     player = players[index]
     #`del players[0]
     #option one -> team 1
@@ -79,7 +79,8 @@ def fill_teams(players,team1,team2,index):
          return val2,team1_copy2,team2_copy2
     #if none above is ok
     else:
-        print(index)
+        #print(team1,"\n",team2)
+        #print("failure")
         raise Exception("Sorry, no numbers below zero")
 
     
@@ -90,7 +91,7 @@ def fill_teams(players,team1,team2,index):
 def get_team_level(team):
     sum = 0
     for val in team:
-        sum += val[i][1]
+        sum += val[1]
     return sum 
 
 
