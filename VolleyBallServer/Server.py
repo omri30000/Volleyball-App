@@ -43,12 +43,12 @@ def build_server():
     
 
 def manage_server(listening_sock):    
-    '''# start listening
+    # start listening
     listening_sock.listen(1)
  
     threads = []
     count_users = 0
-    while count_users < 3:
+    while count_users < 5:
         # new conversation socket
         client_soc, client_address = listening_sock.accept()
         # from now on, the client and server are connected
@@ -68,7 +68,7 @@ def manage_server(listening_sock):
     for x in threads:
         x.join()
 
-    listening_sock.close()  # isn't necessary because the server will be closed manually'''
+    listening_sock.close()  # isn't necessary because the server will be closed manually
 
     teams = build_teams.divide_teams(Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME))
 

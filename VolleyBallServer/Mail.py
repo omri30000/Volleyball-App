@@ -23,7 +23,7 @@ def send_email(mail_server,email,teams):
     msg = """From: Volleyball Motzkin<%s>
 To: %s <%s>
 Subject: %s\n
-%s"""%(SERVER_EMAIL,email.split('@')[0],email,"Your Teams for today!","hi galant, how are you?")
+%s"""%(SERVER_EMAIL,email.split('@')[0],email,"Your Teams for today!",mes)
     mail_server.sendmail("mosmospyt@gmail.com",email, msg)
     print("mail was sent to %s"%(email))
 
@@ -33,7 +33,8 @@ def manage_mail(team1,team2):
 
     mail_server = smtplib.SMTP_SSL("smtp.gmail.com", MAIL_PORT, context=context)
     mail_server.login(SERVER_EMAIL,MAIL_PASSWORD) #TODO: hide password
-    send_email(mail_server,ROY_EMAIL,(team1,team2))
+    send_email(mail_server,OMRI_EMAIL,(team1,team2))
+    send_email(mail_server,OFIR_EMAIL,(team1,team2))
 
     mail_server.quit()
 

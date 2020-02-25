@@ -1,1 +1,1 @@
-{'roy shalev': 7, 'ofir shapira': 10, 'sally shapsa': 2,'moshe' : 15}
+{'roy shalev': 7}
