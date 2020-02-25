@@ -21,9 +21,9 @@ def team_to_str(team):
 def send_email(mail_server,email,teams):
     mes = "Hello sir the teams for today:\n" + team_to_str(teams[0]) +"\n"+ team_to_str(teams[1])
     msg = """From: Volleyball Motzkin<%s>
-To: To Person <%s>
+To: %s <%s>
 Subject: %s\n
-%s"""%(SERVER_EMAIL,email,"Your Teams for today!","hi galant, how are you?")
+%s"""%(SERVER_EMAIL,email.split('@')[0],email,"Your Teams for today!","hi galant, how are you?")
     mail_server.sendmail("mosmospyt@gmail.com",email, msg)
     print("mail was sent to %s"%(email))
 
