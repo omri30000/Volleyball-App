@@ -27,30 +27,33 @@ def from_dict_to_sorted_list(players):
 
 def divide_teams_smart(players):
     parts = from_dict_to_sorted_list(players)
-    return fill_teams(players,[],[])
+    return fill_teams(Helper.from_dict_to_list(players),[],[],0)
 
 
 
-def fill_teams(players,team1,team2):
-    if len(players) == 0:
-        return abs(get_team_level(team2) - get_team_level(team1))
-
-
-    if len(team1) > len(team2) + len(players) +1: # is it bigger than one
-        raise "erorr mate!"
+def fill_teams(players,team1,team2,index):
+    #print(index,"\n",team1,team2)#"\n",team1,"\n",team2)
+   
+    if len(players) == index:
+        #print("finish")
+        return abs(get_team_level(team2) - get_team_level(team1)),copy_list(team1),copy_list(team2)
+    if abs(len(team1) - len(team2)) > len(players) - index :    
+        #print("fail")    # is it bigger than one
+        raise Exception("Sorry, no numbers below zero")
 
     
     cond1,cond2 = True,True
 
     team1_copy = copy_list(team1)
     team2_copy = copy_list(team2)
-    player = players[0]
-    del players[0]
+    
+    player = players[index]
+    #`del players[0]
     #option one -> team 1
     #team
     team1_copy += [player]
     try:
-        val1,team1_copy1,team2_copy1 = fill_teams(players,team1_copy,team2_copy)
+        val1,team1_copy1,team2_copy1 = fill_teams(players,team1_copy,team2_copy,index+1)
     except:
         cond1 = False        
 
@@ -59,11 +62,10 @@ def fill_teams(players,team1,team2):
     del team1_copy[-1]
     team2_copy += [player]
     try:
-        val2, team1_copy2,team2_copy2 = fill_teams(players,team1_copy,team2_copy)
-
-        del team2_copy[-1]
+        val2, team1_copy2,team2_copy2 = fill_teams(players,team1_copy,team2_copy,index+1)
     except:
         cond2 = False
+    del team2_copy[-1]
 
 
     if cond1 and cond2:
@@ -75,10 +77,11 @@ def fill_teams(players,team1,team2):
         return val1,team1_copy1,team2_copy1 
     elif cond2:
          return val2,team1_copy2,team2_copy2
-
-    
+    #if none above is ok
     else:
-        raise "error mate"
+        #print(team1,"\n",team2)
+        #print("failure")
+        raise Exception("Sorry, no numbers below zero")
 
     
     
@@ -88,7 +91,7 @@ def fill_teams(players,team1,team2):
 def get_team_level(team):
     sum = 0
     for val in team:
-        sum += val[i]
+        sum += val[1]
     return sum 
 
 

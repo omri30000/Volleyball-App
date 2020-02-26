@@ -42,3 +42,10 @@ def from_dict_to_list(dictt):
     for i in dictt.items():
         parts += [i]
     return parts
+
+
+def from_list_to_dict(listt):
+    dictt ={}
+    for dou in listt:
+        dictt[dou[0]] = dou[1]
+    return dictt
