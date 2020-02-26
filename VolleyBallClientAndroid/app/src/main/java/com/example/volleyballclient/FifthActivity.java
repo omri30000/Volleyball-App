@@ -16,7 +16,7 @@ public class FifthActivity extends AppCompatActivity {
     Button btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int code = 100;
+        int code = 300;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fifth);
         tvMes = (TextView)findViewById(R.id.SERVER_VALUE);
@@ -28,7 +28,7 @@ public class FifthActivity extends AppCompatActivity {
         }
         catch (NullPointerException ex)
         {
-            code = 200;
+            code = 300;
         }
 
         btnBack.setOnClickListener(new View.OnClickListener()
@@ -40,7 +40,7 @@ public class FifthActivity extends AppCompatActivity {
                 startActivity(BackIntent);
             }
         });
-        if(code == 100)
+        if(code == 200)
         {
             this.getWindow().getDecorView().setBackgroundColor(Color.GREEN);
             tvMes.setText("SUCCESS");
