@@ -6,18 +6,20 @@ import Helper
 import build_teams
 import threading
 import Mail
+import os
 LISTEN_PORT = 2019
 VALID_PLAYERS_FILE_NAME = "Players.txt"
 ATTENDING_EVENT_FILE_NAME = ""
 
 def main():
-    print("Welcome to Volleyball server made by Ofir and Omri\n")
+    print("Welcome to Volleyball server made by Omri and Ofir\n")
     print("**Entering details of next training**")
     
     create_new_event()
     print(ATTENDING_EVENT_FILE_NAME)
     l_socket = build_server()
     manage_server(l_socket)
+
 
 
 def create_new_event():
@@ -28,7 +30,9 @@ def create_new_event():
     global ATTENDING_EVENT_FILE_NAME 
     
     ATTENDING_EVENT_FILE_NAME = day + '_' + month + '_' + year + ".txt"
-    
+    #open a new file if it doens't exist
+    with open(ATTENDING_EVENT_FILE_NAME,'w') as file:
+        pass
 
 def build_server():
     # parse data base file to internal dict data base
@@ -43,12 +47,12 @@ def build_server():
     
 
 def manage_server(listening_sock):    
-    '''# start listening
+    # start listening
     listening_sock.listen(1)
  
     threads = []
     count_users = 0
-    while count_users < 3:
+    while count_users < 5:
         # new conversation socket
         client_soc, client_address = listening_sock.accept()
         # from now on, the client and server are connected
@@ -68,14 +72,13 @@ def manage_server(listening_sock):
     for x in threads:
         x.join()
 
-    listening_sock.close()  # isn't necessary because the server will be closed manually'''
+    listening_sock.close()  # isn't necessary because the server will be closed manually
 
     teams = build_teams.divide_teams(Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME))
 
     print(teams)
     Mail.manage_mail(teams[0],teams[1])
-
-
+    delete_file()
 
 
 
@@ -115,7 +118,12 @@ def check_if_user_known(user_name, database_file):
     else:
         return False
 
+def delete_file():
+    global ATTENDING_EVENT_FILE_NAME
+    key = input("Would you want to delete the file for the event "+ ATTENDING_EVENT_FILE_NAME +"Y/N")
+    if key.upper() =='Y':
+        os.remove(ATTENDING_EVENT_FILE_NAME)
+
 
 if __name__ == '__main__':
     main()
-    

@@ -2,7 +2,7 @@ import socket
 import re
 import sys
 
-SERVER_IP = '127.0.0.1'
+SERVER_IP = '77.137.84.182'
 SERVER_PORT = 2019
 
 
