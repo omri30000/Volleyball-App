@@ -21,12 +21,12 @@ import java.net.Socket;
 import java.net.SocketAddress;
 
 public class FourthActivity extends AppCompatActivity{
-
-    int val = 300;
+    int val;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fourth);
+        val = 300;
         Intent this_intent = this.getIntent();
         String name = this_intent.getExtras().getString("name");
         Log.d("name arrived", name);
@@ -34,6 +34,7 @@ public class FourthActivity extends AppCompatActivity{
         sendMessage(name);
 
         Intent next = new Intent(this,FifthActivity.class);
+        Log.d("val here",Integer.toString(val));
         next.putExtra("code",val);
         startActivity(next);
     }
@@ -58,7 +59,8 @@ public class FourthActivity extends AppCompatActivity{
                     output.println(msg);
                     output.flush();
                     BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
-                    final String st = input.readLine();
+                    String st = "$200";
+                    Log.d("msg_from_server",st);
                     if(st.contains("$200"))
                     {
                         val = 200;
@@ -70,7 +72,11 @@ public class FourthActivity extends AppCompatActivity{
                     output.close();
                     out.close();
                     s.close();
-                } catch (IOException e) {
+                    Log.d("end", Integer.toString(val));
+                }
+                catch (IOException e)
+                {
+                    Log.d("help","im here");
                     e.printStackTrace();
                 }
             }
