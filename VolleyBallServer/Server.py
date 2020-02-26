@@ -87,23 +87,28 @@ def manage_conversation(client_soc, u):
     client_soc.sendall("$400#SUCCESS$".encode())
     client_msg = client_soc.recv(2048).decode()
 
+
     player_name = client_msg[client_msg.find("#") + 1:]
-    player_name = player_name[0:player_name.find("_")] + ' '  + player_name[player_name.find("_") + 1:]
     player_name = player_name[0: player_name.find("$")]
 
-    print(player_name)
+    if len(player_name.split("_")) != 2:
+        client_soc.sendall("$300#INVALID_USER$".encode())
+    else:
+        player_name = player_name[0:player_name.find("_")] + ' '  + player_name[player_name.find("_") + 1:]
 
-    if "$100#" in client_msg:
-        if check_if_user_known(player_name, VALID_PLAYERS_FILE_NAME):
-            attending_players = Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME)
-            valid_players = Helper.read_file_to_dict(VALID_PLAYERS_FILE_NAME)
+        print(player_name)
 
-            attending_players[player_name] = valid_players[player_name]
-            Helper.write_dict_to_file(attending_players, ATTENDING_EVENT_FILE_NAME)
-            client_soc.sendall("$200#OK$".encode())
+        if "$100#" in client_msg:
+            if check_if_user_known(player_name, VALID_PLAYERS_FILE_NAME):
+                attending_players = Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME)
+                valid_players = Helper.read_file_to_dict(VALID_PLAYERS_FILE_NAME)
 
-        else:
-            client_soc.sendall("$300#INVALID_USER$".encode())
+                attending_players[player_name] = valid_players[player_name]
+                Helper.write_dict_to_file(attending_players, ATTENDING_EVENT_FILE_NAME)
+                client_soc.sendall("$200#OK$".encode())
+
+            else:
+                client_soc.sendall("$300#INVALID_USER$".encode())
 
 def check_if_user_known(user_name, database_file):
     """
