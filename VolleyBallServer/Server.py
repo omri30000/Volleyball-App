@@ -52,7 +52,7 @@ def manage_server(listening_sock):
  
     threads = []
     count_users = 0
-    while count_users < 5:
+    while Helper.get_users_num(ATTENDING_EVENT_FILE_NAME) < 5:
         # new conversation socket
         client_soc, client_address = listening_sock.accept()
         # from now on, the client and server are connected

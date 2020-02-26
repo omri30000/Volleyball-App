@@ -2,6 +2,9 @@ import json
 
 players = {1:1, 2:2, 3:3}
 
+def get_users_num(file_name):
+    return len(read_file_to_dict())
+    
 def write_dict_to_file(players, file_name):
     '''
     the function will get the dict of players and write it into a file
