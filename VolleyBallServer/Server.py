@@ -84,7 +84,7 @@ def manage_server(listening_sock):
 
 def manage_conversation(client_soc, u):
     print("start converstion with user")
-    client_soc.sendall("$400#SUCCESS$".encode())
+    client_soc.sendall("$400#SUCCESS$\n".encode())
     client_msg = client_soc.recv(2048).decode()
 
 
@@ -92,7 +92,7 @@ def manage_conversation(client_soc, u):
     player_name = player_name[0: player_name.find("$")]
 
     if len(player_name.split("_")) != 2:
-        client_soc.sendall("$300#INVALID_USER$".encode())
+        client_soc.sendall("$300#INVALID_USER$\n".encode())
     else:
         player_name = player_name[0:player_name.find("_")] + ' '  + player_name[player_name.find("_") + 1:]
 
@@ -105,10 +105,10 @@ def manage_conversation(client_soc, u):
 
                 attending_players[player_name] = valid_players[player_name]
                 Helper.write_dict_to_file(attending_players, ATTENDING_EVENT_FILE_NAME)
-                client_soc.sendall("$200#OK$".encode())
+                client_soc.sendall("$200#OK$\n".encode())
 
             else:
-                client_soc.sendall("$300#INVALID_USER$".encode())
+                client_soc.sendall("$300#INVALID_USER$\n".encode())
 
 def check_if_user_known(user_name, database_file):
     """
