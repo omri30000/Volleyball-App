@@ -21,7 +21,7 @@ import java.net.Socket;
 import java.net.SocketAddress;
 
 public class FourthActivity extends AppCompatActivity{
-    int val = 300;
+    private int val;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("val here0",Integer.toString(val));
