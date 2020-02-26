@@ -21,6 +21,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         etName = (EditText)findViewById(R.id.etName);
         btnSend = (Button)findViewById(R.id.btnSend);
 
+        etName.setHint("Name");
         btnSend.setOnClickListener(this);
     }
 
