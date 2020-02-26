@@ -20,7 +20,6 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_third);
         etName = (EditText)findViewById(R.id.etName);
         btnSend = (Button)findViewById(R.id.btnSend);
-
         etName.setHint("Name");
         btnSend.setOnClickListener(this);
     }
@@ -29,10 +28,14 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         String friendName = etName.getText().toString();
         String[] splitStr = friendName.trim().toLowerCase().split("\\s+");
+        String val = "helo_helo";
         if (v == btnSend)
         {
-            Intent next = new Intent(this,FourthActivity.class);
-            next.putExtra("name",splitStr[0] + '_' + splitStr[1]);
+            Intent next = new Intent(this,FourthActivity.class);//TODO:fix the propblem
+            if(splitStr.length  == 2) {
+                val = splitStr[0] + '_' + splitStr[1];
+            }
+            next.putExtra("name",val);
             startActivity(next);
         }
     }

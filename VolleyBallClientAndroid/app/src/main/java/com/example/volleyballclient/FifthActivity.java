@@ -16,7 +16,7 @@ public class FifthActivity extends AppCompatActivity {
     Button btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int code = 100;
+        int code = 300;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fifth);
         tvMes = (TextView)findViewById(R.id.SERVER_VALUE);

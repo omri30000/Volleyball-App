@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -29,7 +30,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         if (v == addMeBtn)
         {
             Intent next = new Intent(this,FourthActivity.class);
-            next.putExtra("name","ofir shapira");
+            next.putExtra("name","ofir_shapira");
             startActivity(next);
         }
         else if (v == addFriendBtn)

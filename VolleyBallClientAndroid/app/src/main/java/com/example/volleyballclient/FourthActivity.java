@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.icu.text.BreakIterator;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,14 +28,18 @@ public class FourthActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fourth);
         Intent this_intent = this.getIntent();
-        sendMessage(this_intent.getExtras().getString("name"));
+        String name = this_intent.getExtras().getString("name");
+        Log.d("name arrived", name);
+
+        sendMessage(name);
+
         Intent next = new Intent(this,FifthActivity.class);
         next.putExtra("code",val);
         startActivity(next);
     }
 
 
-    private void sendMessage(final String msg)
+    private void sendMessage(final String name)
     {
 
         final Handler handler = new Handler();
@@ -42,8 +47,9 @@ public class FourthActivity extends AppCompatActivity{
             @Override
             public void run() {
 
-                int val = 300;
                 try {
+                    String msg =  "$100#" + name + "$";
+                    Log.d("msg sent",msg);
                     //Replace below IP with the IP of that device in which server socket open.
                     //If you change port then change the port number in the server side code also.
                     Socket s = new Socket("176.230.142.214", 2019);
@@ -53,9 +59,13 @@ public class FourthActivity extends AppCompatActivity{
                     output.flush();
                     BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
                     final String st = input.readLine();
-                    if(st.contains("200"))
+                    if(st.contains("$200"))
                     {
                         val = 200;
+                    }
+                    else
+                    {
+                        val = 300;
                     }
                     output.close();
                     out.close();
