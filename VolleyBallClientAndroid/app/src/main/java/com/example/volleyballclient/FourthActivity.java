@@ -62,7 +62,7 @@ public class FourthActivity extends AppCompatActivity{
                     output.flush();
                     BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
                     //st = input.readLine()
-                    final String st = "$200";
+                    final String st = input.readLine();//$200";
                     Log.d("msg_from_server",st);
                     if(st.contains("$200"))
                     {
@@ -73,7 +73,7 @@ public class FourthActivity extends AppCompatActivity{
                     s.close();
                     Log.d("end", Integer.toString(val));
                 }
-                catch (IOException e)
+                catch (Exception e)
                 {
                     Log.d("help","im here");
                     e.printStackTrace();
