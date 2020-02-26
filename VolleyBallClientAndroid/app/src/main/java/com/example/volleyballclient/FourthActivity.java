@@ -1,5 +1,6 @@
 package com.example.volleyballclient;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,9 @@ public class FourthActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_fourth);
+        Intent next = new Intent(this,FifthActivity.class);
+        next.putExtra("code",100);
+        startActivity(next);
     }
 }

@@ -24,7 +24,7 @@ public class FifthActivity extends AppCompatActivity {
         Intent prev = this.getIntent();
         try
         {
-            code = Objects.requireNonNull(prev.getExtras()).getInt("color");
+            code = Objects.requireNonNull(prev.getExtras()).getInt("code");
         }
         catch (NullPointerException ex)
         {
@@ -36,7 +36,7 @@ public class FifthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent BackIntent = new Intent(v.getContext(),ThirdActivity.class);
+                Intent BackIntent = new Intent(v.getContext(),SecondActivity.class);
                 startActivity(BackIntent);
             }
         });
