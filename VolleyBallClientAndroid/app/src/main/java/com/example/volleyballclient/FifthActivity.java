@@ -1,4 +1,4 @@
-package com.example.volleyball_client_android;
+package com.example.volleyballclient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class FifthActivity extends AppCompatActivity {
     TextView tvMes;
     Button btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_fifth);
         tvMes = (TextView)findViewById(R.id.SERVER_VALUE);
         btnBack = (Button)findViewById(R.id.button_back);
         Intent prev = this.getIntent();
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent BackIntent = new Intent(this,ThirdActivity.class);
+                Intent BackIntent = new Intent(v.getContext(),ThirdActivity.class);
                 startActivity(BackIntent);
             }
         });

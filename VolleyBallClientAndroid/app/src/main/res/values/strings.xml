@@ -4,4 +4,6 @@
     <string name="name">Name</string>
     <string name="enrollbtn">Enroll</string>
     <string name="enroll_myself">Enroll Myself</string>
+    <string name="button">dds</string>
+    <string name="back_button">Back</string>
 </resources>
