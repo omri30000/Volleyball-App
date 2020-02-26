@@ -1,0 +1,1 @@
+{"ofir shapira": 10, "omri zaiman": 10,"avi":15}
