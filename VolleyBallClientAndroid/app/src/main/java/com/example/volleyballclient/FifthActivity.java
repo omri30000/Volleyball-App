@@ -43,7 +43,7 @@ public class FifthActivity extends AppCompatActivity {
         if(code == 100)
         {
             this.getWindow().getDecorView().setBackgroundColor(Color.GREEN);
-            tvMes.setText("@string/success");
+            tvMes.setText("SUCCESS");
         }
         else
         {
