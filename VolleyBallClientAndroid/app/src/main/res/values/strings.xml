@@ -3,4 +3,5 @@
     <string name="enroll_a_friend">Enroll a friend</string>
     <string name="name">Name</string>
     <string name="enrollbtn">Enroll</string>
+    <string name="enroll_myself">Enroll Myself</string>
 </resources>
