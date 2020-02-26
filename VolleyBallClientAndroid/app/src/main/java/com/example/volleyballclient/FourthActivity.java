@@ -61,7 +61,7 @@ public class FourthActivity extends AppCompatActivity{
                     output.println(msg);
                     output.flush();
                     BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
-                    final String st = "$201";
+                    final String st = "$2001";
                     Log.d("msg_from_server",st);
                     if(st.contains("$200"))
                     {
