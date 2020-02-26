@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class ThirdActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText etName;
     private Button btnSend;
     private int count;
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_third);
         etName = (EditText)findViewById(R.id.etName);
         btnSend = (Button)findViewById(R.id.btnSend);
 

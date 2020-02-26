@@ -12,3 +12,5 @@
 /captures
 .externalNativeBuild
 .cxx
+!*/ThirdActivity.java
+!*/activity_third.xml
