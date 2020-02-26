@@ -6,6 +6,7 @@ import Helper
 import build_teams
 import threading
 import Mail
+import os
 LISTEN_PORT = 2019
 VALID_PLAYERS_FILE_NAME = "Players.txt"
 ATTENDING_EVENT_FILE_NAME = ""
@@ -20,6 +21,7 @@ def main():
     manage_server(l_socket)
 
 
+
 def create_new_event():
     day = input("Enter day of training (1-31): ")
     month = input("Enter month of training (1-12): ")
@@ -28,7 +30,9 @@ def create_new_event():
     global ATTENDING_EVENT_FILE_NAME 
     
     ATTENDING_EVENT_FILE_NAME = day + '_' + month + '_' + year + ".txt"
-    
+    #open a new file if it doens't exist
+    with open(ATTENDING_EVENT_FILE_NAME,'w') as file:
+        pass
 
 def build_server():
     # parse data base file to internal dict data base
@@ -74,8 +78,7 @@ def manage_server(listening_sock):
 
     print(teams)
     Mail.manage_mail(teams[0],teams[1])
-
-
+    delete_file()
 
 
 
@@ -114,6 +117,12 @@ def check_if_user_known(user_name, database_file):
         return True
     else:
         return False
+
+def delete_file():
+    global ATTENDING_EVENT_FILE_NAME
+    key = input("Would you want to delete the file for the event "+ ATTENDING_EVENT_FILE_NAME +"Y/N")
+    if key.upper() =='Y':
+        os.remove(ATTENDING_EVENT_FILE_NAME)
 
 
 if __name__ == '__main__':
