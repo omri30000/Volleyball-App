@@ -28,7 +28,7 @@ public class FourthActivity extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fourth);
-        val = 300;
+
         Intent this_intent = this.getIntent();
         String name = this_intent.getExtras().getString("name");
         Log.d("name arrived", name);
@@ -61,7 +61,8 @@ public class FourthActivity extends AppCompatActivity{
                     output.println(msg);
                     output.flush();
                     BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
-                    final String st = "$201";
+                    //st = input.readLine()
+                    final String st = "$200";
                     Log.d("msg_from_server",st);
                     if(st.contains("$200"))
                     {
@@ -80,5 +81,12 @@ public class FourthActivity extends AppCompatActivity{
             }
         });
         thread.start();
+        try {
+            thread.join();
+        }
+        catch(Exception ex)
+        {
+            Log.d("crash","dss");
+        }
     }
 }
