@@ -6,4 +6,6 @@
     <string name="enroll_myself">Enroll Myself</string>
     <string name="button">dds</string>
     <string name="back_button">Back</string>
+    <string name="success">SUCCESS</string>
+    <string name="fail">FAIL</string>
 </resources>
