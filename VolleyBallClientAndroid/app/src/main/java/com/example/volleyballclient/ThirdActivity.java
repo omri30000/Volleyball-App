@@ -2,6 +2,7 @@ package com.example.volleyballclient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
 import android.view.View;
@@ -28,7 +29,9 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         String friendName = etName.getText().toString();
         if (v == btnSend)
         {
-            count++;
+            Intent next = new Intent(this,FourthActivity.class);
+            next.putExtra("name",etName.getText());
+            startActivity(next);
         }
     }
 }

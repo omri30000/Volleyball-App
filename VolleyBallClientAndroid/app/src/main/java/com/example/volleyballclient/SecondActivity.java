@@ -2,6 +2,7 @@ package com.example.volleyballclient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,11 +28,14 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if (v == addMeBtn)
         {
-            count++;
+            Intent next = new Intent(this,FourthActivity.class);
+            next.putExtra("name","ofir shapira");
+            startActivity(next);
         }
         else if (v == addFriendBtn)
         {
-            count++;
+            Intent next = new Intent(this,ThirdActivity.class);
+            startActivity(next);
         }
     }
 }
