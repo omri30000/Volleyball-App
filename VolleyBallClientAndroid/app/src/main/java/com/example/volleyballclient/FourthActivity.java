@@ -21,9 +21,11 @@ import java.net.Socket;
 import java.net.SocketAddress;
 
 public class FourthActivity extends AppCompatActivity{
-    int val;
+    int val = 300;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("val here0",Integer.toString(val));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fourth);
         val = 300;
@@ -42,45 +44,36 @@ public class FourthActivity extends AppCompatActivity{
 
     private void sendMessage(final String name)
     {
-
+        try
+        {
         final Handler handler = new Handler();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-                    String msg =  "$100#" + name + "$";
-                    Log.d("msg sent",msg);
-                    //Replace below IP with the IP of that device in which server socket open.
-                    //If you change port then change the port number in the server side code also.
-                    Socket s = new Socket("176.230.142.214", 2019);
-                    OutputStream out = s.getOutputStream();
-                    PrintWriter output = new PrintWriter(out);
-                    output.println(msg);
-                    output.flush();
-                    BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
-                    String st = "$200";
-                    Log.d("msg_from_server",st);
-                    if(st.contains("$200"))
-                    {
-                        val = 200;
-                    }
-                    else
-                    {
-                        val = 300;
-                    }
-                    output.close();
-                    out.close();
-                    s.close();
-                    Log.d("end", Integer.toString(val));
-                }
-                catch (IOException e)
-                {
-                    Log.d("help","im here");
-                    e.printStackTrace();
-                }
-            }
-        });
-        thread.start();
+        String msg =  "$100#" + name + "$";
+        Log.d("msg sent",msg);
+        //Replace below IP with the IP of that device in which server socket open.
+        //If you change port then change the port number in the server side code also.
+        Socket s = new Socket("176.230.142.214", 2019);
+        OutputStream out = s.getOutputStream();
+        PrintWriter output = new PrintWriter(out);
+        output.println(msg);
+        output.flush();
+        BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        final String st = "$2001";
+        Log.d("msg_from_server",st);
+        if(st.contains("$200"))
+        {
+            val = 200;
+        }
+        output.close();
+        out.close();
+        s.close();
+        Log.d("end", Integer.toString(val));
+        }
+        catch (IOException e)
+        {
+            Log.d("help","im here");
+            e.printStackTrace();
+        }
     }
+
 }
+
