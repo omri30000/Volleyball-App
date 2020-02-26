@@ -28,10 +28,11 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         String friendName = etName.getText().toString();
+        String[] splitStr = friendName.trim().toLowerCase().split("\\s+");
         if (v == btnSend)
         {
             Intent next = new Intent(this,FourthActivity.class);
-            next.putExtra("name",etName.getText());
+            next.putExtra("name",splitStr[0] + '_' + splitStr[1]);
             startActivity(next);
         }
     }
