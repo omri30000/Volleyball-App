@@ -54,4 +54,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(next);
         }
     }
+    public void onBackPressed() { }
+
 }

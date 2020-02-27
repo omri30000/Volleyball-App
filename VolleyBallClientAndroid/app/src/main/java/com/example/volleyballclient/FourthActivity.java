@@ -32,7 +32,7 @@ public class FourthActivity extends AppCompatActivity{
         Intent this_intent = this.getIntent();
         String name = this_intent.getExtras().getString("name");
         Log.d("name arrived", name);
-
+        val = 300;
         sendMessage(name);
 
         Intent next = new Intent(this,FifthActivity.class);
@@ -49,12 +49,12 @@ public class FourthActivity extends AppCompatActivity{
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-
                 try {
                     String msg =  "$100#" + name + "$";
                     Log.d("msg sent",msg);
                     //Replace below IP with the IP of that device in which server socket open.
                     //If you change port then change the port number in the server side code also.
+                    Log.d("im here","im arrived here before sockets");
                     Socket s = new Socket("176.230.142.214", 2019);
                     OutputStream out = s.getOutputStream();
                     PrintWriter output = new PrintWriter(out);
@@ -77,7 +77,7 @@ public class FourthActivity extends AppCompatActivity{
                 catch (Exception e)
                 {
                     Log.d("help","im here");
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
             }
         });
@@ -90,4 +90,6 @@ public class FourthActivity extends AppCompatActivity{
             Log.d("crash","dss");
         }
     }
+    public void onBackPressed() { }
+
 }
