@@ -19,6 +19,7 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.UnknownHostException;
 
 public class FourthActivity extends AppCompatActivity{
     private int val;
@@ -55,7 +56,8 @@ public class FourthActivity extends AppCompatActivity{
                     //Replace below IP with the IP of that device in which server socket open.
                     //If you change port then change the port number in the server side code also.
                     Log.d("im here","im arrived here before sockets");
-                    Socket s = new Socket("176.230.142.214", 2019);
+                    Socket s = new Socket();//("176.230.142.214", 2019);
+                    s.connect(new InetSocketAddress("176.230.142.214", 2019),1000);
                     OutputStream out = s.getOutputStream();
                     PrintWriter output = new PrintWriter(out);
                     output.println(msg);
