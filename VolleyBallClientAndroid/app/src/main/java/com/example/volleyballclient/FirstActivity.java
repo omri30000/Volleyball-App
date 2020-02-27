@@ -20,20 +20,24 @@ public class FirstActivity extends AppCompatActivity {
     Button btnSend;
     Intent next;
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
         //tv = (TextView)findViewById(R.id.)
-        etFirstName = (EditText)findViewById(R.id.etFname);
-        etLastName = (EditText)findViewById(R.id.etLname);
-        btnSend = (Button)findViewById(R.id.button);
-        sp = this.getSharedPreferences("values",0);
-        next =  new Intent(this,SecondActivity.class);;
-        if(sp.getString("name",null) != null)
+        etFirstName = (EditText) findViewById(R.id.etFname);
+        etLastName = (EditText) findViewById(R.id.etLname);
+        btnSend = (Button) findViewById(R.id.button);
+        sp = this.getSharedPreferences("values", 0);
+        next = new Intent(this, SecondActivity.class);
+        Intent thisIntent = this.getIntent();
+        if (!thisIntent.hasExtra("Edit"))
         {
-            startActivity(next);
+            if (sp.getString("name", null) != null)
+            {
+                startActivity(next);
+            }
         }
+
         btnSend.setOnClickListener(new View.OnClickListener()
         {
             @Override

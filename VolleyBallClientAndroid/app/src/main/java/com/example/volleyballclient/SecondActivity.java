@@ -12,6 +12,7 @@ import android.widget.Button;
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
     private Button addMeBtn;
     private Button addFriendBtn;
+    private Button editDatabtn;
     private int count;
 
     @Override
@@ -21,13 +22,21 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
         addMeBtn = (Button)findViewById(R.id.btnEnrMyself);
         addFriendBtn = (Button)findViewById(R.id.btnEnrFriend);
+        editDatabtn = (Button)findViewById(R.id.btnEditData);
 
         addMeBtn.setOnClickListener(this);
         addFriendBtn.setOnClickListener(this);
+        editDatabtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        if(v == editDatabtn)
+        {
+            Intent back = new Intent(this,FirstActivity.class);
+            back.putExtra("Edit","True");
+            startActivity(back);
+        }
         if (v == addMeBtn)
         {
             SharedPreferences sp = v.getContext().getSharedPreferences("values",0);
