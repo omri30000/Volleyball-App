@@ -3,6 +3,7 @@ package com.example.volleyballclient;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,9 +30,14 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if (v == addMeBtn)
         {
-            Intent next = new Intent(this,FourthActivity.class);
-            next.putExtra("name","ofir_shapira");
-            startActivity(next);
+            SharedPreferences sp = v.getContext().getSharedPreferences("values",0);
+            String name = sp.getString("name",null);
+            if(name != null) {
+                Log.d("name entered", name);
+                Intent next = new Intent(this, FourthActivity.class);
+                next.putExtra("name", name);
+                startActivity(next);
+            }
         }
         else if (v == addFriendBtn)
         {
