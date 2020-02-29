@@ -18,23 +18,27 @@ public class ZeroActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_zero);
 
-        sendPassBtn = (Button)findViewById(R.id.btnEnrMyself);
-        passValEt = (EditText) findViewById(R.id.btnSendPass);
+        sendPassBtn = (Button)findViewById(R.id.btnSendPass);
+        passValEt = (EditText) findViewById(R.id.passEt);
+
         sp = this.getSharedPreferences("values", 0);
-        Intent next = new Intent(this, FirstActivity.class);
+        next = new Intent(this, FirstActivity.class);
         if (sp.getBoolean("pass", false))
         {
             startActivity(next);
         }
+        sendPassBtn.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
+        Log.d("fly",v.toString());
         if (v == sendPassBtn) {
             String value = passValEt.getText().toString();
+            Log.d("password entered 0", value);
             if (value.equals("4242")) {
                 Log.d("password entered", value);
                 SharedPreferences.Editor editor = sp.edit();
