@@ -14,4 +14,5 @@
     <string name="first_name">first name</string>
     <string name="last_name">last name</string>
     <string name="btn_edit_my_data">Edit My Data</string>
+    <string name="btn_pass">Enter</string>
 </resources>
