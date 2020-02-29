@@ -21,10 +21,10 @@ public class ZeroActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_second);
 
         sendPassBtn = (Button)findViewById(R.id.btnEnrMyself);
-        passValEt = (EditText) findViewById(R.id.btnEnrFriend);
+        passValEt = (EditText) findViewById(R.id.btnSendPass);
         sp = this.getSharedPreferences("values", 0);
         Intent next = new Intent(this, FirstActivity.class);
-        if (sp.getBoolean("pass", false) != false)
+        if (sp.getBoolean("pass", false))
         {
             startActivity(next);
         }
@@ -35,8 +35,8 @@ public class ZeroActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v == sendPassBtn) {
             String value = passValEt.getText().toString();
-            if (value == "4242") {
-                Log.d("password entered", name);
+            if (value.equals("4242")) {
+                Log.d("password entered", value);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putBoolean("pass", true);
                 editor.apply();
