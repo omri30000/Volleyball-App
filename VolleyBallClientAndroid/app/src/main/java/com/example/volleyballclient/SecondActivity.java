@@ -41,7 +41,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         {
             SharedPreferences sp = v.getContext().getSharedPreferences("values",0);
             String name = sp.getString("name",null);
-            if(name != null) {
+            if(name != null)
+            {
                 Log.d("name entered", name);
                 Intent next = new Intent(this, FourthActivity.class);
                 next.putExtra("name", name);
