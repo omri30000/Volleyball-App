@@ -13,13 +13,15 @@
         android:layout_marginBottom="292dp"
         android:autofillHints=""
         android:ems="10"
+        android:hint="****"
         android:inputType="textPassword"
         android:text=""
-        android:hint="****"
         app:layout_constraintBottom_toTopOf="@+id/btnSendPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.646" />
 
     <Button
         android:id="@+id/btnSendPass"
