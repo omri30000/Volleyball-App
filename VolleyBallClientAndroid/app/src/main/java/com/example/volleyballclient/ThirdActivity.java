@@ -39,6 +39,6 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
             startActivity(next);
         }
     }
-    public void onBackPressed() { }
+    //public void onBackPressed() { }
 
 }
