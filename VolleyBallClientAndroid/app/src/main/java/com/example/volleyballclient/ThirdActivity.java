@@ -31,7 +31,7 @@ public class ThirdActivity extends AppCompatActivity implements View.OnClickList
         String val = "helo_helo";
         if (v == btnSend)
         {
-            Intent next = new Intent(this,FourthActivity.class);//TODO:fix the propblem
+            Intent next = new Intent(this,FourthActivity.class);//TODO:fix the problem
             if(splitStr.length  == 2) {
                 val = splitStr[0] + '_' + splitStr[1];
             }
