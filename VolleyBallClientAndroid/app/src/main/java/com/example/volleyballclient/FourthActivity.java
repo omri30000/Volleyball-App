@@ -20,14 +20,16 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.UnknownHostException;
+import java.util.Objects;
 
-public class FourthActivity extends AppCompatActivity{
+public class FourthActivity extends AppCompatActivity implements View.OnClickListener{
     private int val;
-    private Button sendBtn;
     private EditText ipEt;
     Intent thisIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Button sendBtn;
         Log.d("val here",Integer.toString(val));
 
         super.onCreate(savedInstanceState);
@@ -35,34 +37,10 @@ public class FourthActivity extends AppCompatActivity{
 
         thisIntent = this.getIntent();
 
-        sendBtn = (Button)findViewById(R.id.btnSend);
-        ipEt = (EditText)findViewById(R.id.ipEt);
+        sendBtn = (Button)findViewById(R.id.sendBtnIp);
+        this.ipEt = (EditText)findViewById(R.id.ipEt);
 
-        sendBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                String name = thisIntent.getExtras().getString("name");
-                Log.d("name arrived", name);
-                val = 300;
-                String ipVal = "176.230.142.";
-                String input =  ipEt.getText().toString();
-                while(ipEt.length()<3)
-                {
-                    ipVal = "0"+ ipVal;
-                }
-                sendMessage(name,ipVal);
-
-                Intent next = new Intent(v.getContext(),FifthActivity.class);
-                Log.d("val here",Integer.toString(val));
-                next.putExtra("code",val);
-                startActivity(next);
-            }
-        });
-
-
-
+        sendBtn.setOnClickListener(this);
     }
 
 
@@ -115,6 +93,28 @@ public class FourthActivity extends AppCompatActivity{
             Log.d("crash","dss");
         }
     }
+
+
     public void onBackPressed() { }
 
+    @Override
+    public void onClick(View v) {
+        String name = Objects.requireNonNull(thisIntent.getExtras()).getString("name");
+        if (name != null)
+            Log.d("name arrived", name);
+
+        val = 300;
+
+        String ipVal = "176.230.142.";
+        String input =  ipEt.getText().toString();
+
+        ipVal += input;
+
+        sendMessage(name,ipVal);
+
+        Intent next = new Intent(v.getContext(),FifthActivity.class);
+        Log.d("val here",Integer.toString(val));
+        next.putExtra("code",val);
+        startActivity(next);
+    }
 }

@@ -10,18 +10,15 @@
         android:id="@+id/ipEt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="180dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="****"
         android:inputType="textPassword"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/sendBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sendingTV"
@@ -38,13 +35,12 @@
         app:layout_constraintVertical_bias="0.831" />
 
     <Button
-        android:id="@+id/sendBtn"
-        android:layout_width="75dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="88dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/sendingTV"
+        android:id="@+id/sendBtnIp"
+        android:layout_width="108dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="112dp"
+        android:text="Enter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.351"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ipEt" />
 </androidx.constraintlayout.widget.ConstraintLayout>
