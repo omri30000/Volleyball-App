@@ -23,6 +23,9 @@ import java.net.UnknownHostException;
 
 public class FourthActivity extends AppCompatActivity{
     private int val;
+    private Button sendBtn;
+    private EditText ipEt;
+    Intent thisIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("val here",Integer.toString(val));
@@ -30,20 +33,40 @@ public class FourthActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fourth);
 
-        Intent this_intent = this.getIntent();
-        String name = this_intent.getExtras().getString("name");
-        Log.d("name arrived", name);
-        val = 300;
-        sendMessage(name);
+        thisIntent = this.getIntent();
 
-        Intent next = new Intent(this,FifthActivity.class);
-        Log.d("val here",Integer.toString(val));
-        next.putExtra("code",val);
-        startActivity(next);
+        sendBtn = (Button)findViewById(R.id.btnSend);
+        ipEt = (EditText)findViewById(R.id.ipEt);
+
+        sendBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String name = thisIntent.getExtras().getString("name");
+                Log.d("name arrived", name);
+                val = 300;
+                String ipVal = "176.230.142.";
+                String input =  ipEt.getText().toString();
+                while(ipEt.length()<3)
+                {
+                    ipVal = "0"+ ipVal;
+                }
+                sendMessage(name,ipVal);
+
+                Intent next = new Intent(v.getContext(),FifthActivity.class);
+                Log.d("val here",Integer.toString(val));
+                next.putExtra("code",val);
+                startActivity(next);
+            }
+        });
+
+
+
     }
 
 
-    private void sendMessage(final String name)
+    private void sendMessage(final String name,final String ip)
     {
 
         final Handler handler = new Handler();
@@ -57,7 +80,7 @@ public class FourthActivity extends AppCompatActivity{
                     //If you change port then change the port number in the server side code also.
                     Log.d("im here","im arrived here before sockets");
                     Socket s = new Socket();//("176.230.142.214", 2019);
-                    s.connect(new InetSocketAddress("176.230.142.214", 2019),1000);
+                    s.connect(new InetSocketAddress(ip, 2019),1000);
                     OutputStream out = s.getOutputStream();
                     PrintWriter output = new PrintWriter(out);
                     output.println(msg);
