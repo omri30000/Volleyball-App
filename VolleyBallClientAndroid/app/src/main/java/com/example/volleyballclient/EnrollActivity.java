@@ -20,7 +20,7 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class EnrollActivity extends AppCompatActivity implements View.OnClickListener {
+public class EnrollActivity extends MenuBaseActivity implements View.OnClickListener {
 
     private int trainingsAmount;
     private ScrollView mainSv;
@@ -35,12 +35,23 @@ public class EnrollActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enroll);
+        //setContentView(R.layout.activity_enroll);
 
         getOptionalTrainings();
         //Get training list from server
         //For now, number of trainings will be constant
         loadTrainings();
+    }
+
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_enroll;
+    }
+
+    @Override
+    protected int getIconId() {
+        return R.id.enroll_nav;
     }
 
     public void  loadTrainings()

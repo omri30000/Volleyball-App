@@ -1,43 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".HomeActivity">
 
-    <ScrollView
+<com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp">
-
-        <LinearLayout
-            android:id="@+id/enrollScrolledLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-        </LinearLayout>
-
-    </ScrollView>
-
-
-
-
-
-</LinearLayout>
-
-
-
-<!--
-
-
-
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
     <Button
         android:id="@+id/btnEnrMyself"
         android:layout_width="180dp"
@@ -63,21 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnEnrMyself"
         app:layout_constraintVertical_bias="0.398" />
 
-    <Button
-        android:id="@+id/btnEditData"
-        android:layout_width="259dp"
-        android:layout_height="49dp"
-        android:background="#050505"
-        android:shadowColor="@android:color/holo_red_dark"
-        android:text="@string/btn_edit_my_data"
-        android:textAllCaps="true"
-        android:textColor="#FAF6F6"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEnrFriend"
-        app:layout_constraintVertical_bias="0.536" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -89,4 +54,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

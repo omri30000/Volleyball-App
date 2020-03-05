@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class StatsActivity extends AppCompatActivity {
+public class StatsActivity extends MenuBaseActivity {
 
     SharedPreferences sp;
     //TextView tv;
@@ -20,8 +20,20 @@ public class StatsActivity extends AppCompatActivity {
     Intent next;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
     }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_stats;
+    }
+
+    @Override
+    protected int getIconId() {
+        return R.id.stats_nav;
+    }
+
     public void onBackPressed() { }
 
 }
