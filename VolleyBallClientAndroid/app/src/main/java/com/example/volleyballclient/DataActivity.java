@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class DataActivity extends AppCompatActivity {
+public class DataActivity extends MenuBaseActivity {
 
     SharedPreferences sp;
     //TextView tv;
@@ -22,7 +22,6 @@ public class DataActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data);
         //tv = (TextView)findViewById(R.id.)
         etFirstName = (EditText) findViewById(R.id.etFname);
         etLastName = (EditText) findViewById(R.id.etLname);
@@ -53,6 +52,16 @@ public class DataActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected int getLayoutResourceId()
+    {
+        return R.layout.activity_data;
+    }    protected int getIconId()
+    {
+        return R.id.profile_nav;
+    }
+
     public void onBackPressed() { }
 
 }

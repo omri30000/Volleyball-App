@@ -14,14 +14,14 @@ import androidx.appcompat.view.menu.MenuItemWrapperICS;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MenuBaseActivity extends AppCompatActivity {
-    private BottomNavigationView menu;
+public abstract class MenuBaseActivity extends AppCompatActivity {
+    protected BottomNavigationView menu;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState,int resLayout) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(resLayout);
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
+        setContentView(getLayoutResourceId());
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.nav_view);
+        bottomNavigationView.setSelectedItemId(this.getIconId());
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected( MenuItem item) {
@@ -30,26 +30,38 @@ public class MenuBaseActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home_nav:
                         next = new Intent(getApplicationContext(),HomeActivity.class);
-                        break;
+                        startActivity(next);
+                        overridePendingTransition(0,0);
+
+                        return true;
                     case R.id.enroll_nav:
-                        next = new Intent(getApplicationContext(),EnrollActivty.class);
-                        break;
+                        next = new Intent(getApplicationContext(),EnrollActivity.class);
+                        startActivity(next);
+                        overridePendingTransition(0,0);
+
+                        return true;
+
                     case R.id.stats_nav:
                         next = new Intent(getApplicationContext(),StatsActivity.class);
-                        break;
+                        startActivity(next);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.profile_nav:
+                        next = new Intent(getApplicationContext(),DataActivity.class);
+                        next.putExtra("Edit","True");
+                        startActivity(next);
+                        overridePendingTransition(0,0);
+                        return true;
                 }
-                return true;
+                return false;
         }
-    }
 
-    }
 
-    protected void ManageMenu()
-    {
+    });
+
 
     }
-
-
-
-
+    protected abstract int getLayoutResourceId();
+    protected abstract int getIconId();
 }
