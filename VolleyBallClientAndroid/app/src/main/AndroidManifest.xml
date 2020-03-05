@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EnrollActivity"></activity>
+        <activity android:name=".EnrollActivity">
+        </activity>
         <activity android:name=".PasswordActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Enrollddd"></activity>
+        <activity android:name=".Enrollddd">
+        </activity>
         <activity android:name=".HomeActivity"></activity>
         <activity android:name=".ThirdActivity"></activity>
         <activity android:name=".FourthActivity"></activity>
         <activity android:name=".FifthActivity"></activity>
+
+        <activity android:name=".Training" />
     </application>
 
 </manifest>

@@ -22,10 +22,13 @@ import java.net.Socket;
 
 public class EnrollActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private int trainingsAmount;
     private ScrollView mainSv;
     private LinearLayout internalLayout;
     private Button[] enrollMe;
     private Button[] enrollFriend;
+    private Training[] trainings;
+    private String msg;
 
 
 
@@ -34,15 +37,15 @@ public class EnrollActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll);
 
+        getOptionalTrainings();
         //Get training list from server
         //For now, number of trainings will be constant
-        loadTrainings(5);
-
-
+        loadTrainings();
     }
 
-    public void  loadTrainings(int trainingsAmount)
+    public void  loadTrainings()
     {
+        getOptionalTrainings();
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -55,11 +58,13 @@ public class EnrollActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-        this.enrollMe = new Button[trainingsAmount];
-        this.enrollFriend = new Button[trainingsAmount];
+        this.enrollMe = new Button[this.trainingsAmount];
+        this.enrollFriend = new Button[this.trainingsAmount];
 
-        for (int i = 0; i < trainingsAmount; i++)
+        for (int i = 0; i < this.trainingsAmount; i++)
         {
+            //#todo: add details to layout of each training
+
             String textOnButton = "@string/enroll_myself";
             this.enrollMe[i] = new Button(this);
             this.enrollMe[i].setText(textOnButton);
@@ -77,61 +82,82 @@ public class EnrollActivity extends AppCompatActivity implements View.OnClickLis
 
     /*
     name parameter is in structure "fName_Lname"
+    returns the response of the server
      */
-    private void sendMessage(final String name)
+    private String sendMessage(final String msg)
     {
-
+        String st = "";
         final Handler handler = new Handler();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    String msg =  "$100#" + name + "$";
+        try {
+            //Replace below IP with the IP of that device in which server socket open.
+            //If you change port then change the port number in the server side code also.
+            Socket s = new Socket();//("176.230.142.214", 2019);
+            s.connect(new InetSocketAddress("@string/server_ip", Integer.parseInt("@string/server_port")),1000);
+            OutputStream out = s.getOutputStream();
+            PrintWriter output = new PrintWriter(out);
+            output.println(msg);
+            output.flush();
+            BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
-                    //Replace below IP with the IP of that device in which server socket open.
-                    //If you change port then change the port number in the server side code also.
-                    Socket s = new Socket();//("176.230.142.214", 2019);
-                    s.connect(new InetSocketAddress("@string/server_ip", Integer.parseInt("@string/server_port")),1000);
-                    OutputStream out = s.getOutputStream();
-                    PrintWriter output = new PrintWriter(out);
-                    output.println(msg);
-                    output.flush();
-                    BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
-                    String st = "";
-                    st = input.readLine();//$200";
-                    Log.d("msg_from_server",st);
+            st = input.readLine();//$200";
+            Log.d("msg_from_server",st);
 
-                    if(st.contains("$101$"))
-                    {
-                        Toast.makeText(getApplicationContext(), "@string/success", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(), "@string/fail", Toast.LENGTH_SHORT).show();
-                    }
 
-                    output.close();
-                    out.close();
-                    s.close();
-                }
-                catch (Exception e)
-                {
-                    Log.d("help","im here");
-                    //e.printStackTrace();
-                }
-            }
-        });
 
-        thread.start();
-
-        try
-        {
-            thread.join();
+            output.close();
+            out.close();
+            s.close();
         }
-        catch(Exception ex)
+        catch (Exception e)
         {
-            Log.d("crash","dss");
+            Log.d("help","im here");
+            //e.printStackTrace();
+        }
+
+        return st;
+    }
+
+
+    private void enrollTraining(final String name, int trainingId)
+    {
+        String msg =  "$100#" + name + "#" + trainingId + "$";
+
+        String response = sendMessage(msg);
+
+        Log.d("msg_from_server",response);
+
+        if(response.contains("$101$"))
+        {
+            Toast.makeText(getApplicationContext(), "@string/success", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "@string/fail", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void getOptionalTrainings()
+    {
+        String msg = "$200$";
+        String singleTraining = "";
+
+        String response = sendMessage(msg);
+
+        if (response.contains("$201")) // got list of trainings
+        {
+            this.trainingsAmount = countAppearances(response, '[');
+            trainings = new Training[this.trainingsAmount];
+
+            //Example- "$201#[1243,25.2.2030,13:40,Goshen]$"
+            for (int i = 0 ; i < this.trainingsAmount; i++)
+            {
+                response = response.substring(response.indexOf('#') + 1);
+                singleTraining = response;
+                singleTraining = singleTraining.substring(0, singleTraining.indexOf('#'));
+
+                trainings[i] = new Training(singleTraining);
+            }
         }
     }
 
@@ -152,7 +178,7 @@ public class EnrollActivity extends AppCompatActivity implements View.OnClickLis
 
             if(name != null)
             {
-                sendMessage(name);
+                enrollTraining(name, trainingId);
             }
         }
         else
@@ -167,6 +193,12 @@ public class EnrollActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void onBackPressed() { }
 
+
+    //#todo: function will count times that a char appears in a string
+    public int countAppearances(String str, char ch)
+    {
+        return 5;
+    }
 }
 
  /*
