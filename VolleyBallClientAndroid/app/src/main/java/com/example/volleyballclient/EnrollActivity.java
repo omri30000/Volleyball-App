@@ -202,13 +202,22 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
         }
 
     }
+    //deny returning back
     public void onBackPressed() { }
 
 
-    //#todo: function will count times that a char appears in a string
+    //#todo: function will count times that a char appears in a string - fixed
     public int countAppearances(String str, char ch)
     {
-        return 5;
+        int cnt = 0;
+        for(int i =0;i<str.length();i++)
+        {
+            if(str.charAt(i)== ch)
+            {
+                cnt++;
+            }
+        }
+        return cnt;
     }
 }
 
