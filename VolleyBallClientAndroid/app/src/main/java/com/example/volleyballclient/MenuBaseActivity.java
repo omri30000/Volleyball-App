@@ -19,22 +19,28 @@ public abstract class MenuBaseActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutResourceId());
+        int layout = getLayoutResourceId();
+        final int iconId = this.getIconId();
+        setContentView(layout);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.nav_view);
-        bottomNavigationView.setSelectedItemId(this.getIconId());
+        bottomNavigationView.setSelectedItemId(iconId);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected( MenuItem item) {
                 Intent next;
-
+    // send to the requested activity
                 switch (item.getItemId()) {
                     case R.id.home_nav:
+                        if(iconId == R.id.home_nav)
+                            break;
                         next = new Intent(getApplicationContext(),HomeActivity.class);
                         startActivity(next);
                         overridePendingTransition(0,0);
 
                         return true;
                     case R.id.enroll_nav:
+                        if(iconId == R.id.enroll_nav)
+                            break;
                         next = new Intent(getApplicationContext(),EnrollActivity.class);
                         startActivity(next);
                         overridePendingTransition(0,0);
@@ -42,12 +48,16 @@ public abstract class MenuBaseActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.stats_nav:
+                        if(iconId == R.id.stats_nav)
+                            break;
                         next = new Intent(getApplicationContext(),StatsActivity.class);
                         startActivity(next);
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.profile_nav:
+                        if(iconId == R.id.profile_nav)
+                            break;
                         next = new Intent(getApplicationContext(),DataActivity.class);
                         next.putExtra("Edit","True");
                         startActivity(next);
