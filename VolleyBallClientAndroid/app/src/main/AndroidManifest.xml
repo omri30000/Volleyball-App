@@ -14,18 +14,19 @@
         <activity
             android:name="com.Sharp.volleyballclient.MenuNevigation"
             android:label="@string/title_activity_menu_nevigation"></activity>
-        <activity android:name=".ZeroActivity">
-            <intent-filter>
+        <activity android:name=".PasswordActivity">
+ <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FirstActivity"></activity>
-        <activity android:name=".SecondActivity"></activity>
-        <activity android:name=".ThirdActivity"></activity>
-        <activity android:name=".FourthActivity"></activity>
-        <activity android:name=".FifthActivity"></activity>
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".EnrollActivity"></activity>
+        <activity android:name=".EnrollFriendActivity"></activity>
+        <activity android:name=".ResponseActivity"></activity>
+        <activity android:name=".DataActivity"></activity>
+        <activity android:name=".StatsActivity"></activity>
     </application>
 
 </manifest>

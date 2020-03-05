@@ -8,8 +8,69 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private ScrollView mainSv;
+    private LinearLayout internalLayout;
+    private Button[] enrollMe;
+    private Button[] enrollFriend;
+
+
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+
+        //Get training list from server
+        //For now, number of trainings will be constant
+        loadTrainings(5);
+
+
+    }
+
+    public void  loadTrainings(int trainingsAmount)
+    {
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        this.mainSv = new ScrollView(this);
+        this.mainSv.setLayoutParams(layoutParams);
+
+        this.internalLayout = new LinearLayout(this);
+        this.internalLayout.setLayoutParams(layoutParams);
+
+
+
+        this.enrollMe = new Button[trainingsAmount];
+        this.enrollFriend = new Button[trainingsAmount];
+
+        for (int i = 0; i < trainingsAmount; i++)
+        {
+            String textOnButton = "@string/enroll_myself";
+            this.enrollMe[i] = new Button(this);
+            this.enrollMe[i].setText(textOnButton);
+            this.enrollMe[i].setId("");
+
+            textOnButton = "@string/enroll_a_friend";
+            this.enrollFriend[i] = new Button(this);
+            this.enrollFriend[i].setText(textOnButton);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+    public void onBackPressed() { }
+
+    /*
     private Button addMeBtn;
     private Button addFriendBtn;
     private Button editDatabtn;
@@ -55,6 +116,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(next);
         }
     }
-    public void onBackPressed() { }
+    public void onBackPressed() { }*/
 
 }
