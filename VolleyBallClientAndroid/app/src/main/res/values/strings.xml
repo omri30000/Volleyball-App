@@ -16,4 +16,6 @@
     <string name="btn_edit_my_data">Edit My Data</string>
     <string name="btn_pass">Enter</string>
     <string name="ofir_shapira_omri_zaiman"><![CDATA[Ofir Shapira & Omri Zaiman]]></string>
+    <string name="server_ip">176.230.142.</string>
+    <string name="server_port">2019</string>
 </resources>

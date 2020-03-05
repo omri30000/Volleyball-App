@@ -5,11 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 
 public class EnrollActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -67,6 +76,66 @@ public class EnrollActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /*
+    name parameter is in structure "fName_Lname"
+     */
+    private void sendMessage(final String name)
+    {
+
+        final Handler handler = new Handler();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String msg =  "$100#" + name + "$";
+
+                    //Replace below IP with the IP of that device in which server socket open.
+                    //If you change port then change the port number in the server side code also.
+                    Socket s = new Socket();//("176.230.142.214", 2019);
+                    s.connect(new InetSocketAddress("@string/server_ip", Integer.parseInt("@string/server_port")),1000);
+                    OutputStream out = s.getOutputStream();
+                    PrintWriter output = new PrintWriter(out);
+                    output.println(msg);
+                    output.flush();
+                    BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+                    String st = "";
+                    st = input.readLine();//$200";
+                    Log.d("msg_from_server",st);
+
+                    if(st.contains("$101$"))
+                    {
+                        Toast.makeText(getApplicationContext(), "@string/success", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "@string/fail", Toast.LENGTH_SHORT).show();
+                    }
+
+                    output.close();
+                    out.close();
+                    s.close();
+                }
+                catch (Exception e)
+                {
+                    Log.d("help","im here");
+                    //e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+
+        try
+        {
+            thread.join();
+        }
+        catch(Exception ex)
+        {
+            Log.d("crash","dss");
+        }
+    }
+
+    /*
     structure of tag (type string): "Me/Friend<trainingId>"
     examples- "Me156", "Friend617"
      */
@@ -83,10 +152,7 @@ public class EnrollActivity extends AppCompatActivity implements View.OnClickLis
 
             if(name != null)
             {
-                Log.d("name entered", name);
-                Intent next = new Intent(this, SendingActivity.class);
-                next.putExtra("name", name);
-                startActivity(next);
+                sendMessage(name);
             }
         }
         else

@@ -28,7 +28,7 @@ public class DataActivity extends AppCompatActivity {
         etLastName = (EditText) findViewById(R.id.etLname);
         btnSend = (Button) findViewById(R.id.button);
         sp = this.getSharedPreferences("values", 0);
-        next = new Intent(this, SecondActivity.class);
+        next = new Intent(this, HomeActivity.class);
         Intent thisIntent = this.getIntent();
         if (!thisIntent.hasExtra("Edit"))
         {
