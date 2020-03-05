@@ -22,7 +22,7 @@ import java.net.SocketAddress;
 import java.net.UnknownHostException;
 import java.util.Objects;
 
-public class FourthActivity extends AppCompatActivity implements View.OnClickListener{
+public class SendingActivity extends AppCompatActivity implements View.OnClickListener{
     private int val;
     private EditText ipEt;
     Intent thisIntent;

@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ZeroActivity extends AppCompatActivity implements View.OnClickListener {
+public class PasswordActivity extends AppCompatActivity implements View.OnClickListener {
     SharedPreferences sp;
     private Button sendPassBtn;
     private EditText passValEt;

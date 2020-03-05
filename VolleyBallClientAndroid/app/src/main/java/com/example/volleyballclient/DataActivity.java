@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class FirstActivity extends AppCompatActivity {
+public class DataActivity extends AppCompatActivity {
 
     SharedPreferences sp;
     //TextView tv;

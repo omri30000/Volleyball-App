@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
-public class FifthActivity extends AppCompatActivity {
+public class ResponseActivity extends AppCompatActivity {
     TextView tvMes;
     Button btnBack;
     @Override
