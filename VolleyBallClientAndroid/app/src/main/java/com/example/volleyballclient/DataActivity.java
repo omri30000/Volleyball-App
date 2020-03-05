@@ -22,7 +22,7 @@ public class DataActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first);
+        setContentView(R.layout.activity_data);
         //tv = (TextView)findViewById(R.id.)
         etFirstName = (EditText) findViewById(R.id.etFname);
         etLastName = (EditText) findViewById(R.id.etLname);

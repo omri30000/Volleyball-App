@@ -33,7 +33,7 @@ public class SendingActivity extends AppCompatActivity implements View.OnClickLi
         Log.d("val here",Integer.toString(val));
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fourth);
+        setContentView(R.layout.activity_sending);
 
         thisIntent = this.getIntent();
 
@@ -112,7 +112,7 @@ public class SendingActivity extends AppCompatActivity implements View.OnClickLi
 
         sendMessage(name,ipVal);
 
-        Intent next = new Intent(v.getContext(),FifthActivity.class);
+        Intent next = new Intent(v.getContext(),ResponseActivity.class);
         Log.d("val here",Integer.toString(val));
         next.putExtra("code",val);
         startActivity(next);

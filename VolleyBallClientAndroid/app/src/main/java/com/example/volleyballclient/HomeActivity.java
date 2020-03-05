@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     private Button addMeBtn;
     private Button addFriendBtn;
     private Button editDatabtn;
@@ -18,7 +18,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_home);
 
         addMeBtn = (Button)findViewById(R.id.btnEnrMyself);
         addFriendBtn = (Button)findViewById(R.id.btnEnrFriend);
@@ -33,7 +33,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if(v == editDatabtn)
         {
-            Intent back = new Intent(this,FirstActivity.class);
+            Intent back = new Intent(this,DataActivity.class);
             back.putExtra("Edit","True");
             startActivity(back);
         }
@@ -44,14 +44,14 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             if(name != null)
             {
                 Log.d("name entered", name);
-                Intent next = new Intent(this, FourthActivity.class);
+                Intent next = new Intent(this, SendingActivity.class);
                 next.putExtra("name", name);
                 startActivity(next);
             }
         }
         else if (v == addFriendBtn)
         {
-            Intent next = new Intent(this,ThirdActivity.class);
+            Intent next = new Intent(this,EnrollFriendActivity.class);
             startActivity(next);
         }
     }

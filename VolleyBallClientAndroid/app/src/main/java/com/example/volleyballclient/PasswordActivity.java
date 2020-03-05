@@ -18,13 +18,13 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zero);
+        setContentView(R.layout.activity_password);
 
         sendPassBtn = (Button)findViewById(R.id.btnSendPass);
         passValEt = (EditText) findViewById(R.id.passEt);
 
         sp = this.getSharedPreferences("values", 0);
-        next = new Intent(this, FirstActivity.class);
+        next = new Intent(this, DataActivity.class);
         if (sp.getBoolean("pass", false))
         {
             startActivity(next);

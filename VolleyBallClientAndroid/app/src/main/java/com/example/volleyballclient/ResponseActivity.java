@@ -18,7 +18,7 @@ public class ResponseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         int code = 300;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fifth);
+        setContentView(R.layout.activity_response);
         tvMes = (TextView)findViewById(R.id.SERVER_VALUE);
         btnBack = (Button)findViewById(R.id.button_back);
         Intent prev = this.getIntent();
@@ -36,7 +36,7 @@ public class ResponseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent BackIntent = new Intent(v.getContext(),SecondActivity.class);
+                Intent BackIntent = new Intent(v.getContext(),HomeActivity.class);
                 startActivity(BackIntent);
             }
         });
