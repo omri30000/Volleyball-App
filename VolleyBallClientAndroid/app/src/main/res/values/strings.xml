@@ -16,4 +16,8 @@
     <string name="btn_edit_my_data">Edit My Data</string>
     <string name="btn_pass">Enter</string>
     <string name="ofir_shapira_omri_zaiman"><![CDATA[Ofir Shapira & Omri Zaiman]]></string>
+    <string name="title_activity_menu_nevigation">MenuNevigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
