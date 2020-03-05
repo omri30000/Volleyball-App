@@ -118,7 +118,7 @@ def check_if_user_known(user_name, database_file):
     """
     valid_players = Helper.read_file_to_dict(database_file) # dict of players
 
-    if user_name in valid_players.keys():
+    if user_name.lower() in valid_players.keys():
         return True
     else:
         return False
