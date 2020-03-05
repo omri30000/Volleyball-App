@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class EnrollActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ScrollView mainSv;
     private LinearLayout internalLayout;
@@ -20,12 +20,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_enroll);
 
         //Get training list from server
         //For now, number of trainings will be constant
@@ -56,21 +54,56 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             String textOnButton = "@string/enroll_myself";
             this.enrollMe[i] = new Button(this);
             this.enrollMe[i].setText(textOnButton);
-            this.enrollMe[i].setId("");
+            this.enrollMe[i].setTag("Me" + i);
 
             textOnButton = "@string/enroll_a_friend";
             this.enrollFriend[i] = new Button(this);
             this.enrollFriend[i].setText(textOnButton);
+            this.enrollFriend[i].setTag("Friend" + i);
+
+            this.enrollMe[i].setOnClickListener(this);
+            this.enrollFriend[i].setOnClickListener(this);
         }
     }
 
+    /*
+    structure of tag (type string): "Me/Friend<trainingId>"
+    examples- "Me156", "Friend617"
+     */
     @Override
     public void onClick(View v) {
+        int trainingId = 0;
+        if (v.getTag().toString().substring(0,2).equals("Me")) // enroll me was clicked
+        {
+            trainingId = Integer.parseInt(v.getTag().toString().substring(2));
+
+            //Enroll him to training
+            SharedPreferences sp = v.getContext().getSharedPreferences("values",0);
+            String name = sp.getString("name",null);
+
+            if(name != null)
+            {
+                Log.d("name entered", name);
+                Intent next = new Intent(this, SendingActivity.class);
+                next.putExtra("name", name);
+                startActivity(next);
+            }
+        }
+        else
+        {
+            trainingId = Integer.parseInt(v.getTag().toString().substring(6));
+
+            //Enroll him to training
+            Intent next = new Intent(this, EnrollFriendActivity.class);
+            startActivity(next);
+        }
 
     }
     public void onBackPressed() { }
 
-    /*
+}
+
+ /*
     private Button addMeBtn;
     private Button addFriendBtn;
     private Button editDatabtn;
@@ -117,5 +150,3 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     public void onBackPressed() { }*/
-
-}
