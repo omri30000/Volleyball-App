@@ -40,7 +40,6 @@ def enroll_to_training(enroll_msg):  # response to 100
             Helper.write_dict_to_file(attending_players, ATTENDING_EVENT_FILE_NAME)
             '''
             return "$101$\n"
-
         else:
             return "$102#invalid_player_name$\n"
 
@@ -85,8 +84,6 @@ def check_if_user_known(user_name, database_file):
     else:
         return False
 
-def delete_file():
-    global ATTENDING_EVENT_FILE_NAME
-    key = input("Would you want to delete the file for the event "+ ATTENDING_EVENT_FILE_NAME +"Y/N")
-    if key.upper() =='Y':
-        os.remove(ATTENDING_EVENT_FILE_NAME)
+
+def delete_file(file_name):
+    os.remove(file_name)
