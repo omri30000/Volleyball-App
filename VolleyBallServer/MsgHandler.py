@@ -1,54 +1,36 @@
-import json
-
-players = {1:1, 2:2, 3:3}
-
-def get_users_num(file_name):
-    return len(read_file_to_dict(file_name))
-    
-def write_dict_to_file(players, file_name):
-    '''
-    the function will get the dict of players and write it into a file
-    input: dict of players and name of file
-    output: none
-    '''
-    with open(file_name,'w') as file:
-        file.write(str(players))
 
 
-def read_file_to_dict(file_name):
-    '''
-    the function will get the file name and read a dict of players from inside it
-    input: dict of players and name of file
-    output: dict of players
-    '''
-    #print("--rftd--")
-    #print("name: " + file_name)
-    with open(file_name, 'r') as file:
-        if not check_if_file_empty(file): # file not empty
-            players = eval(file.read()) 
-        else:
-            players = {}
-
-    return players
-
-def check_if_file_empty(my_file):
-    my_file.seek(0) #ensure you're at the start of the file..
-    first_char = my_file.read(1) #get the first character
-    if not first_char:
-        return True
-    else:
-        my_file.seek(0) #first character wasn't empty, return to start of file.
-        return False
-
-def from_dict_to_list(dictt):
-    parts = []
-    for i in dictt.items():
-        parts += [i]
-    return parts
+def enroll_to_training(enroll_msg):  # response to 100
+    """
+    the function enrolls a player to a specific training
+    :param enroll_msg: msg of type 100 from client (Example: "$100#1234#omri_zaiman$\n")
+    :type enroll_msg: string(includes training ID and player name)
+    :return: message of type 101/102
+    :rtype: string 
+    """
+    pass
 
 
-def from_list_to_dict(listt):
-    dictt ={}
-    for dou in listt:
-        dictt[dou[0]] = dou[1]
-    return dictt
+def provide_available_training_list():  # response to 200
+    """
+    the function creates msg of type 201 with the list of trainings (responses to msg type 200 which has no parameters)
+    """
+    pass
+
+
+def provide_teams_for_training(teams_msg):  # response to 300
+    """
+    the function will response to msg 300 and create teams msg
+    :param teams_msg: msg of type 300 with training id (Example: "$300#1234$\n")
+    :return: msg of type 301/302 
+    """
+    pass
+
+
+def provide_players_for_training(players_msg):  # response to 350
+    """
+    the function will response to msg 300 and create players msg 351 (all signed players for specific training)
+    :param teams_msg: msg of type 350 with training id (Example: "$350#1234$\n")
+    :return: msg of type 351 
+    """
+    pass
