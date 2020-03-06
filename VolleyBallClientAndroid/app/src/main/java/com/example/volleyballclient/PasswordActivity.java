@@ -24,7 +24,7 @@ public class PasswordActivity extends AppCompatActivity implements View.OnClickL
         passValEt = (EditText) findViewById(R.id.passEt);
 
         sp = this.getSharedPreferences("values", 0);
-        next = new Intent(this, DataActivity.class);
+        next = new Intent(this, RegisterActivity.class);
         if (sp.getBoolean("pass", false))
         {
             startActivity(next);

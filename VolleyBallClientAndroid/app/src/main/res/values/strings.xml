@@ -9,7 +9,7 @@
     <string name="success">SUCCESS</string>
     <string name="fail">FAIL</string>
     <string name="sending">Sending...</string>
-    <string name="register">Register</string>
+    <string name="update">Update</string>
     <string name="send">send</string>
     <string name="first_name">first name</string>
     <string name="last_name">last name</string>
@@ -22,5 +22,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="server_ip">176.230.142.</string>
     <string name="server_port">2019</string>
->>>>>>> 33f5c573147f134453cbd64dacb6b05bbc5d8329
+    <string name="register">register</string>
+    >>>>>>> 33f5c573147f134453cbd64dacb6b05bbc5d8329
 </resources>

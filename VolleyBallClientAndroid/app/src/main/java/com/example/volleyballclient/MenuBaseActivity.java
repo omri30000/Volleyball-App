@@ -26,6 +26,7 @@ public abstract class MenuBaseActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(iconId);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
+
             public boolean onNavigationItemSelected( MenuItem item) {
                 Intent next;
     // send to the requested activity
