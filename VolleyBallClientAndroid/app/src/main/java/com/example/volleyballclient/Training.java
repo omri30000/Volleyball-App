@@ -16,18 +16,18 @@ public class Training extends AppCompatActivity {
     private String time;
     private String place;
 
-    //Example- "[1243#25.2.2030#13:40#Goshen]"
+    //Example- "[1243,25.2.2030,13:40,Goshen]"
     Training(String initMsg)
     {
         String msg = initMsg.substring(1); // start from first digit of id
-        this.trainingId = Integer.parseInt(msg.substring(0, msg.indexOf('#')));
-        msg = msg.substring(msg.indexOf('#') + 1); //start from first digit of date
+        this.trainingId = Integer.parseInt(msg.substring(0, msg.indexOf(',')));
+        msg = msg.substring(msg.indexOf(',') + 1); //start from first digit of date
 
-        this.date = msg.substring(0, msg.indexOf('#'));
-        msg = msg.substring(msg.indexOf('#') + 1); //start from first digit of time
+        this.date = msg.substring(0, msg.indexOf(','));
+        msg = msg.substring(msg.indexOf(',') + 1); //start from first digit of time
 
-        this.time = msg.substring(0, msg.indexOf('#'));
-        msg = msg.substring(msg.indexOf('#') + 1); //start from first digit of time
+        this.time = msg.substring(0, msg.indexOf(','));
+        msg = msg.substring(msg.indexOf(',') + 1); //start from first digit of place
 
         this.place = msg.substring(0, msg.indexOf(']'));
     }
