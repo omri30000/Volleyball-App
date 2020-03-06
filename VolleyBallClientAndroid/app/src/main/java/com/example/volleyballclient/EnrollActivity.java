@@ -160,7 +160,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
             this.trainingsAmount = countAppearances(response, '[');
             trainings = new Training[this.trainingsAmount];
 
-            //Example- "$201#[1243,25.2.2030,13:40,Goshen]$"
+            //Example- "$201#[1243,25.2.2030,13:40,Goshen]#[1432,22.4.2040,13:50,beach]$"
             for (int i = 0 ; i < this.trainingsAmount; i++)
             {
                 response = response.substring(response.indexOf('#') + 1);
@@ -206,7 +206,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
     public void onBackPressed() { }
 
 
-    //#todo: function will count times that a char appears in a string - fixed
+    //function will count times that a char appears in a string
     public int countAppearances(String str, char ch)
     {
         int cnt = 0;
