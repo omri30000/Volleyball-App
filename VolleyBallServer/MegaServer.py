@@ -79,62 +79,25 @@ def manage_server(listening_sock):
 
 
 def manage_conversation(client_soc, user_id):
-
-    print("start converstion with user")
+    """
+    the function will manage the messages transfering between server and individual client
+    """
+    print("start converstion with user " + user_id)
     client_soc.sendall("$400$\n".encode())
 
     finish = False
     while not finish:
         try:
             client_msg = client_soc.recv(2048).decode()
-            msg_code = client_msg[1:4]  # between $$ - $100$ for example
+            msg_code = int(client_msg[1:4])  # between $$ - $100$ for example
+            
+            response = MsgHandler.code_to_func[msg_code](client_msg)  # create response message to client
 
+            client_soc.sendall(response.encode())
+        except Exception as e:
+            finish = True
 
-
-
-    
-
-
-    player_name = client_msg[client_msg.find("#") + 1:]
-    player_name = player_name[0: player_name.find("$")]
-
-    if len(player_name.split("_")) != 2:
-        client_soc.sendall("$300#INVALID_USER$\n".encode())
-    else:
-        player_name = player_name[0:player_name.find("_")] + ' '  + player_name[player_name.find("_") + 1:]
-
-        print(player_name)
-
-        if "$100#" in client_msg:
-            if check_if_user_known(player_name, VALID_PLAYERS_FILE_NAME):
-                attending_players = Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME)
-                valid_players = Helper.read_file_to_dict(VALID_PLAYERS_FILE_NAME)
-
-                attending_players[player_name] = valid_players[player_name]
-                Helper.write_dict_to_file(attending_players, ATTENDING_EVENT_FILE_NAME)
-                client_soc.sendall("$200#OK$\n".encode())
-
-            else:
-                client_soc.sendall("$300#INVALID_USER$\n".encode())
-
-def check_if_user_known(user_name, database_file):
-    """
-    the function will check if a player is recognized (appears in players file)
-    input: the name of the player and the file of valid players
-    output: boolean if player is valid or not
-    """
-    valid_players = Helper.read_file_to_dict(database_file) # dict of players
-
-    if user_name.lower() in valid_players.keys():
-        return True
-    else:
-        return False
-
-def delete_file():
-    global ATTENDING_EVENT_FILE_NAME
-    key = input("Would you want to delete the file for the event "+ ATTENDING_EVENT_FILE_NAME +"Y/N")
-    if key.upper() =='Y':
-        os.remove(ATTENDING_EVENT_FILE_NAME)
+    client_soc.close()
 
 
 if __name__ == '__main__':
