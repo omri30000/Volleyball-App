@@ -98,7 +98,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
     private String sendMessage(final String msg)
     {
         String st = "";
-        final Handler handler = new Handler();
+        //final Handler handler = new Handler();
         try {
             //Replace below IP with the IP of that device in which server socket open.
             //If you change port then change the port number in the server side code also.
