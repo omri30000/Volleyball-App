@@ -20,11 +20,24 @@ def add_player_to_training(player_name, training_id):
     input: player name and training ID
     output: true or false if adding went successfuly
     """
-    all_players = get_valid_players()
     if check_if_user_known(player_name):
         valid_players = get_valid_players()  # dict of valid players and levels
         player_level = valid_players[player_name]
-
+        
+        data_base = firebase.FirebaseApplication("https://volleyball2020-fd3c0.firebaseio.com/", None)
+        try:
+            training_details = get_training_details(training_id)
+            if training_details != None:
+                path = '/Trainings/' + str(training_id) + '/enrolledPlayers/' 
+                result = data_base.put(path, player_name, player_level)
+                # print (result)
+                return True
+            else:
+                return False
+        except Exception as e:
+            return False
+    
+    return False
 
 
 def check_if_user_known(user_name):
@@ -59,4 +72,10 @@ def get_training_details(training_id):
     return result
 
 
-# print(get_training_details(1321))
+def main():
+    # print(get_training_details(1321))
+    print(add_player_to_training('ofir shapira', 1234))
+
+if __name__ == '__main__':
+    main()
+    
