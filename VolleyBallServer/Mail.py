@@ -1,6 +1,6 @@
 import smtplib
 import ssl
-import build_teams
+import teams_building
 
 
 #consts

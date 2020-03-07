@@ -67,7 +67,9 @@ def provide_players_for_training(players_msg):  # response to 350
     :param teams_msg: msg of type 350 with training id (Example: "$350#1234$\n")
     :return: msg of type 351 
     """
+
     pass
+    return "$351"
 
 
 

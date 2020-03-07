@@ -3,7 +3,7 @@ import re
 import collections
 import _thread
 import Helper
-import build_teams
+import teams_building
 import threading
 import Mail
 import os
@@ -90,7 +90,7 @@ def manage_conversation(client_soc, user_id):
         try:
             client_msg = client_soc.recv(2048).decode()
             msg_code = int(client_msg[1:4])  # between $$ - $100$ for example
-            
+            #split don't send all the message
             response = MsgHandler.code_to_func[msg_code](client_msg)  # create response message to client
 
             client_soc.sendall(response.encode())
