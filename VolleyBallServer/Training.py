@@ -1,5 +1,5 @@
 import teams_building
-
+import Game
 class Training:
     training_num = 0
     def __init__(self,date,location):

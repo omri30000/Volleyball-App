@@ -1,3 +1,4 @@
+import Score
 class Game:
     def __init__(self):
         self.score = Score()
