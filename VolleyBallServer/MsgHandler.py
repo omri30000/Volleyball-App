@@ -1,4 +1,5 @@
 import Helper
+import FireBaseHandler as fBase
 
 
 VALID_PLAYERS_FILE_NAME = "Players.txt"
@@ -30,15 +31,7 @@ def enroll_to_training(enroll_msg):  # response to 100
         player_name = player_name[0:player_name.find("_")] + ' '  + player_name[player_name.find("_") + 1:]
 
 
-        if check_if_user_known(player_name, VALID_PLAYERS_FILE_NAME):
-            # todo: add player name to attending file by training ID instead of the code here in comment
-            '''
-            attending_players = Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME)
-            valid_players = Helper.read_file_to_dict(VALID_PLAYERS_FILE_NAME)
-
-            attending_players[player_name] = valid_players[player_name]
-            Helper.write_dict_to_file(attending_players, ATTENDING_EVENT_FILE_NAME)
-            '''
+        if fBase.add_player_to_training(player_name, training_id):
             return "$101$\n"
         else:
             return "$102#invalid_player_name$\n"
@@ -70,21 +63,6 @@ def provide_players_for_training(players_msg):  # response to 350
 
     pass
     return "$351"
-
-
-
-def check_if_user_known(user_name, database_file):
-    """
-    the function will check if a player is recognized (appears in players file)
-    input: the name of the player and the file of valid players
-    output: boolean if player is valid or not
-    """
-    valid_players = Helper.read_file_to_dict(database_file) # dict of players
-
-    if user_name.lower() in valid_players.keys():
-        return True
-    else:
-        return False
 
 
 def delete_file(file_name):
