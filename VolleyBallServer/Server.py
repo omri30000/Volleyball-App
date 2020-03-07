@@ -3,7 +3,7 @@ import re
 import collections
 import _thread
 import Helper
-import build_teams
+import teams_building
 import threading
 import Mail
 import os
@@ -74,7 +74,7 @@ def manage_server(listening_sock):
 
     listening_sock.close()  # isn't necessary because the server will be closed manually
 
-    teams = build_teams.divide_teams(Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME))
+    teams = teams_building.divide_teams(Helper.read_file_to_dict(ATTENDING_EVENT_FILE_NAME))
 
     print(teams)
     Mail.manage_mail(teams[0],teams[1])
