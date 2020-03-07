@@ -13,6 +13,18 @@ def get_valid_players():
         result = {}
     return result
 
+def get_trainings_list():
+    """
+    the function will return all the trainings in the system
+    input:none
+    output:dict of all trainings
+    """
+    data_base = firebase.FirebaseApplication("https://volleyball2020-fd3c0.firebaseio.com/", None)
+    try:
+        result = data_base.get('/Trainings','')
+    except Exception as e:
+        result = {} 
+    return result
 
 def add_player_to_training(player_name, training_id):
     """
@@ -33,7 +45,7 @@ def add_player_to_training(player_name, training_id):
                 # print (result)
                 return True
             else:
-                return False
+                return False # isn't if unnecessary?
         except Exception as e:
             return False
     
