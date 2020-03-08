@@ -29,6 +29,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
     private Button[] enrollFriend;
     private Training[] trainings;
     private String msg;
+    private String st;
 
 
 
@@ -97,33 +98,47 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
      */
     private String sendMessage(final String msg)
     {
-        String st = "";
-        //final Handler handler = new Handler();
+        //final String st = "";
+        final Handler handler = new Handler();
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //Replace below IP with the IP of that device in which server socket open.
+                    //If you change port then change the port number in the server side code also.
+                    Socket s = new Socket();//("176.230.142.214", 2019);
+                    s.connect(new InetSocketAddress("@string/server_ip", Integer.parseInt("@string/server_port")),1000);
+                    OutputStream out = s.getOutputStream();
+                    PrintWriter output = new PrintWriter(out);
+                    output.println(msg);
+                    output.flush();
+                    BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+
+                    st = input.readLine();//$200";
+                    Log.d("msg_from_server",st);
+
+
+                    output.close();
+                    out.close();
+                    s.close();
+                }
+                catch (Exception e)
+                {
+                    Log.d("help","im here");
+                    //e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
         try {
-            //Replace below IP with the IP of that device in which server socket open.
-            //If you change port then change the port number in the server side code also.
-            Socket s = new Socket();//("176.230.142.214", 2019);
-            s.connect(new InetSocketAddress("@string/server_ip", Integer.parseInt("@string/server_port")),1000);
-            OutputStream out = s.getOutputStream();
-            PrintWriter output = new PrintWriter(out);
-            output.println(msg);
-            output.flush();
-            BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
-
-
-            st = input.readLine();//$200";
-            Log.d("msg_from_server",st);
-
-
-
-            output.close();
-            out.close();
-            s.close();
+            thread.join();
         }
-        catch (Exception e)
+        catch(Exception ex)
         {
-            Log.d("help","im here");
-            //e.printStackTrace();
+            Log.d("crash","dss");
         }
 
         return st;
