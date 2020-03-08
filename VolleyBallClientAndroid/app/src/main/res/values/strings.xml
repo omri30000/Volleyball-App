@@ -20,7 +20,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="server_ip">176.230.142.</string>
+    <string name="server_ip">176.230.142.108</string>
     <string name="server_port">2019</string>
     <string name="register">register</string>
 </resources>

@@ -108,7 +108,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
                     //Replace below IP with the IP of that device in which server socket open.
                     //If you change port then change the port number in the server side code also.
                     Socket s = new Socket();//("176.230.142.214", 2019);
-                    s.connect(new InetSocketAddress("@string/server_ip", Integer.parseInt("@string/server_port")),1000);
+                    s.connect(new InetSocketAddress("176.230.142.108", 2019),1000);
                     OutputStream out = s.getOutputStream();
                     PrintWriter output = new PrintWriter(out);
                     output.println(msg);
@@ -116,6 +116,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
                     BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
 
+                    st = input.readLine();//$200";
                     st = input.readLine();//$200";
                     Log.d("msg_from_server",st);
 
@@ -134,6 +135,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
 
         thread.start();
         try {
+
             thread.join();
         }
         catch(Exception ex)
@@ -172,16 +174,21 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
 
         if (response.contains("$201")) // got list of trainings
         {
-            this.trainingsAmount = countAppearances(response, '[');
+            response = response.replace("$","");
+            this.trainingsAmount = countAppearances(response, '#');
+            Log.d("cnt",Integer.toString(this.trainingsAmount));
             trainings = new Training[this.trainingsAmount];
 
             //Example- "$201#[1243,25.2.2030,13:40,Goshen]#[1432,22.4.2040,13:50,beach]$"
             for (int i = 0 ; i < this.trainingsAmount; i++)
             {
+                Log.d("from server",response);
+
                 response = response.substring(response.indexOf('#') + 1);
                 singleTraining = response;
-                singleTraining = singleTraining.substring(0, singleTraining.indexOf('#'));
 
+                singleTraining = singleTraining.indexOf('#') != -1 ? singleTraining.substring(0, singleTraining.indexOf('#')) :singleTraining ;
+                Log.d("substring",singleTraining);
                 trainings[i] = new Training(singleTraining);
             }
         }

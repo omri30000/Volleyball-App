@@ -82,7 +82,7 @@ def manage_conversation(client_soc, user_id):
     """
     the function will manage the messages transfering between server and individual client
     """
-    print("start converstion with user " + user_id)
+    print("start converstion with user " + str(user_id))
     client_soc.sendall("$400$\n".encode())
 
     finish = False

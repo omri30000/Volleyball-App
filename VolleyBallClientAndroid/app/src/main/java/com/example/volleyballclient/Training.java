@@ -19,7 +19,7 @@ public class Training extends AppCompatActivity {
     //Example- "[1243,25.2.2030,13:40,Goshen]"
     Training(String initMsg)
     {
-        String msg = initMsg.substring(1); // start from first digit of id
+        String msg = initMsg;//.substring(1); // start from first digit of id
         this.trainingId = Integer.parseInt(msg.substring(0, msg.indexOf(',')));
         msg = msg.substring(msg.indexOf(',') + 1); //start from first digit of date
 
@@ -29,7 +29,7 @@ public class Training extends AppCompatActivity {
         this.time = msg.substring(0, msg.indexOf(','));
         msg = msg.substring(msg.indexOf(',') + 1); //start from first digit of place
 
-        this.place = msg.substring(0, msg.indexOf(']'));
+        this.place = msg;
     }
 
     public int getTrainingId() {
