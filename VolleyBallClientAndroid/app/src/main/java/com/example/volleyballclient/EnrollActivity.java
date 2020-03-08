@@ -57,8 +57,6 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
 
     public void  loadTrainings()
     {
-        getOptionalTrainings();
-
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
@@ -89,6 +87,10 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
 
             this.enrollMe[i].setOnClickListener(this);
             this.enrollFriend[i].setOnClickListener(this);
+
+
+            this.internalLayout.addView(this.enrollMe[i]);
+            this.internalLayout.addView(this.enrollFriend[i]);
         }
     }
 
