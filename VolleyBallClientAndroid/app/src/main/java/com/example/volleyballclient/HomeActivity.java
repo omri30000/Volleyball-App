@@ -12,15 +12,68 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomeActivity extends MenuBaseActivity
 {
+    Training next;
+    String[] players;
+    TextView[] playersTexts;
 
     private ScrollView mainSv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        get_nearest_training();
+        if(this.next != null)
+        {
+            loadNextTraining();
+            Log.d("hihi","not heree");
+        }
+        else
+        {
+            Log.d("debug","im here");
+        }
+    }
+
+    private void loadNextTraining() {
+
+        LinearLayout l = (LinearLayout) findViewById(R.id.linearLayout1);
+        this.playersTexts = new TextView[this.players.length -1 ];
+
+        for (int i = 0; i < this.players.length; i++) {
+            if(players(i) == )
+            String text = players[i];
+            this.playersTexts[i] = new TextView(this);
+            this.playersTexts[i].setText(text);
+            this.playersTexts[i].setTag("player" + i);
+
+            this.playersTexts[i].setVisibility(View.VISIBLE);
+            l.addView(this.playersTexts[i]);
+        }
+    }
+
+    protected void get_nearest_training()
+    {
+        SharedPreferences sp =this.getSharedPreferences("values",0);
+        String msg = "$250#" +sp.getString("name",null);
+        String response = Helper.sendMessage(msg);
+        if(!response.startsWith("$251"))
+        {
+            this.next = null;
+        }
+        else
+        {
+            response = response.replace("$", "");
+            String[] parts = response.split("#");
+            this.next = new Training(parts[1]);
+            players = parts[2].split(",");
+            for (int i = 0; i < players.length; i++) {
+                players[i] = Helper.decode(players[i]);
+            }
+        }
     }
 
 

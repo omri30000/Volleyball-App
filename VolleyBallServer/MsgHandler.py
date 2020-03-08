@@ -68,7 +68,7 @@ def provide_my_nearest_training(msg):
             for key,val in vals.items():
                 if(key != "enrolledPlayers"):
                     msg+=',' + val
-            msg += '#' + get_names(vals["enrolledPlayers"])
+            msg += '#' + get_names(vals["enrolledPlayers"])+"$\n"
             return msg
     return "$252$\n"
 

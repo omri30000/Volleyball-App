@@ -20,6 +20,8 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import static com.example.volleyballclient.Helper.sendMessage;
+
 public class EnrollActivity extends MenuBaseActivity implements View.OnClickListener {
 
     private int trainingsAmount;
@@ -29,7 +31,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
     private Button[] enrollFriend;
     private Training[] trainings;
     private String msg;
-    private String st;
+    //private String st;
 
 
 
@@ -100,12 +102,12 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
     /*
     name parameter is in structure "fName_Lname"
     returns the response of the server
-     */
+
     private String sendMessage(final String msg)
     {
         //final String st = "";
         final Handler handler = new Handler();
-
+        final String[] st = {" "};
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -121,14 +123,15 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
                     BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
 
-                    st = input.readLine();//$200";
-                    st = input.readLine();//$200";
-                    Log.d("msg_from_server",st);
+                    st[0] = input.readLine();//$200";
+                    st[0] = input.readLine();//$200";
+                    Log.d("msg_from_server", st[0]);
 
 
                     output.close();
                     out.close();
                     s.close();
+
                 }
                 catch (Exception e)
                 {
@@ -148,25 +151,25 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
             Log.d("crash","dss");
         }
 
-        return st;
+        return st[0];
     }
-
+*/
 
     private void enrollTraining(final String name, int trainingId)
     {
         String msg =  "$100#" + name + "#" + trainingId + "$\n";
 
-        String response = sendMessage(msg);
+        String response = Helper.sendMessage(msg);
 
         Log.d("msg_from_server",response);
 
         if(response.contains("$101$"))
         {
-            Toast.makeText(getApplicationContext(), "@string/success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.success), Toast.LENGTH_SHORT).show();
         }
         else
         {
-            Toast.makeText(getApplicationContext(), "@string/fail", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.fail), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -177,10 +180,10 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
 
         String response = sendMessage(msg);
 
-        if (response.contains("$201")) // got list of trainings
+        if (response.startsWith("$201")) // got list of trainings
         {
             response = response.replace("$","");
-            this.trainingsAmount = countAppearances(response, '#');
+            this.trainingsAmount = Helper.countAppearances(response, '#');
             Log.d("cnt",Integer.toString(this.trainingsAmount));
             trainings = new Training[this.trainingsAmount];
 
@@ -232,20 +235,6 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
     //deny returning back
     public void onBackPressed() { }
 
-
-    //function will count times that a char appears in a string
-    public int countAppearances(String str, char ch)
-    {
-        int cnt = 0;
-        for(int i =0;i<str.length();i++)
-        {
-            if(str.charAt(i)== ch)
-            {
-                cnt++;
-            }
-        }
-        return cnt;
-    }
 }
 
  /*

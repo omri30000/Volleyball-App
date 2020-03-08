@@ -92,7 +92,7 @@ def manage_conversation(client_soc, user_id):
             msg_code = int(client_msg[1:4])  # between $$ - $100$ for example
             #split don't send all the message
             response = MsgHandler.code_to_func[msg_code](client_msg)  # create response message to client
-
+            print(response)
             client_soc.sendall(response.encode())
         except Exception as e:
             finish = True
