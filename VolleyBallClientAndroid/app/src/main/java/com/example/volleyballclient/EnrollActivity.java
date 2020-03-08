@@ -57,7 +57,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
 
     public void  loadTrainings()
     {
-        getOptionalTrainings();
+        //getOptionalTrainings();
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
