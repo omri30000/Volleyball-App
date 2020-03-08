@@ -58,15 +58,15 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
     public void  loadTrainings()
     {
 
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
+        //LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+      //         LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        this.mainSv = new ScrollView(this);
-        this.mainSv.setLayoutParams(layoutParams);
+        //this.mainSv = new ScrollView(this);
+        //this.mainSv.setLayoutParams(layoutParams);
 
-        this.internalLayout = new LinearLayout(this);
-        this.internalLayout.setLayoutParams(layoutParams);
-
+        //this.internalLayout = new LinearLayout(this);
+        //this.internalLayout.setLayoutParams(layoutParams);
+        LinearLayout ll = (LinearLayout)findViewById(R.id.linearLayout1);
 
 
         this.enrollMe = new Button[this.trainingsAmount];
@@ -87,11 +87,15 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
             this.enrollFriend[i].setTag("Friend" + i);
 
             this.enrollMe[i].setOnClickListener(this);
+            this.enrollMe[i].setVisibility(View.VISIBLE);
+
             this.enrollFriend[i].setOnClickListener(this);
+            this.enrollFriend[i].setVisibility(View.VISIBLE);
 
 
-            this.internalLayout.addView(this.enrollMe[i]);
-            this.internalLayout.addView(this.enrollFriend[i]);
+
+            ll.addView(this.enrollMe[i]);
+            ll.addView(this.enrollFriend[i]);
         }
     }
 
