@@ -74,12 +74,12 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
         {
             //#todo: add details to layout of each training
 
-            String textOnButton = "@string/enroll_myself";
+            String textOnButton = getString(R.string.enroll_myself);
             this.enrollMe[i] = new Button(this);
             this.enrollMe[i].setText(textOnButton);
             this.enrollMe[i].setTag("Me" + i);
 
-            textOnButton = "@string/enroll_a_friend";
+            textOnButton = getString(R.string.enroll_a_friend);
             this.enrollFriend[i] = new Button(this);
             this.enrollFriend[i].setText(textOnButton);
             this.enrollFriend[i].setTag("Friend" + i);
@@ -113,7 +113,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
                     //Replace below IP with the IP of that device in which server socket open.
                     //If you change port then change the port number in the server side code also.
                     Socket s = new Socket();//("176.230.142.214", 2019);
-                    s.connect(new InetSocketAddress("176.230.142.108", 2019),1000);
+                    s.connect(new InetSocketAddress(getString(R.string.server_ip), Integer.parseInt(getString(R.string.server_port))),1000);
                     OutputStream out = s.getOutputStream();
                     PrintWriter output = new PrintWriter(out);
                     output.println(msg);
@@ -154,7 +154,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
 
     private void enrollTraining(final String name, int trainingId)
     {
-        String msg =  "$100#" + name + "#" + trainingId + "$";
+        String msg =  "$100#" + name + "#" + trainingId + "$\n";
 
         String response = sendMessage(msg);
 
