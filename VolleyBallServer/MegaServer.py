@@ -16,7 +16,7 @@ def main():
     print("Welcome to Volleyball server made by Omri and Ofir\n")
     print("**Entering details of next training**")
     
-    create_new_event()
+    #create_new_event()
 
     l_socket = build_server()
     manage_server(l_socket)

@@ -83,6 +83,18 @@ def get_training_details(training_id):
         result = {}
     return result
 
+def get_my_trainings(name):
+    """
+    This function returns all the trainings of a player
+    Input:name of player
+    Output:dict of all the player's trainings
+    """
+    my_trainings = {}
+    all = get_trainings_list()
+    for id,values in all.items():
+        if name in values["enrolledPlayers"]:
+            my_trainings[id] = values
+    return my_trainings
 
 def main():
     # print(get_training_details(1321))

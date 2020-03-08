@@ -52,3 +52,15 @@ def from_list_to_dict(listt):
     for dou in listt:
         dictt[dou[0]] = dou[1]
     return dictt
+
+def decode_name(name):
+    """
+    This function casts the name from 'ofir_shapira' to 'ofir shapira'
+    """
+    return ' '.join(name.split('_'))
+
+def encode_name(name):
+    """
+    This function casts the name from 'omri zaiman' to 'omri_zaiman'
+    """
+    return '_'.join(name.split())
