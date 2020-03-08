@@ -64,9 +64,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
         //this.mainSv = new ScrollView(this);
         //this.mainSv.setLayoutParams(layoutParams);
 
-        //this.internalLayout = new LinearLayout(this);
-        //this.internalLayout.setLayoutParams(layoutParams);
-        LinearLayout ll = (LinearLayout)findViewById(R.id.linearLayout1);
+        this.internalLayout = (LinearLayout)findViewById(R.id.linearLayout1);
 
 
         this.enrollMe = new Button[this.trainingsAmount];
@@ -94,8 +92,8 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
 
 
 
-            ll.addView(this.enrollMe[i]);
-            ll.addView(this.enrollFriend[i]);
+            this.internalLayout.addView(this.enrollMe[i]);
+            this.internalLayout.addView(this.enrollFriend[i]);
         }
     }
 
