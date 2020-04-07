@@ -27,7 +27,7 @@ returns the response of the server
                     //Replace below IP with the IP of that device in which server socket open.
                     //If you change port then change the port number in the server side code also.
                     Socket s = new Socket();//("176.230.142.214", 2019);
-                    s.connect(new InetSocketAddress("176.230.142.108",2019),1000);
+                    s.connect(new InetSocketAddress("192.168.1.25",2019),1000);
                     OutputStream out = s.getOutputStream();
                     PrintWriter output = new PrintWriter(out);
                     output.println(msg);
@@ -38,7 +38,7 @@ returns the response of the server
                     st = input.readLine();//$200";
                     st = input.readLine();//$200";
                     Log.d("msg_from_server", st);
-                            ;
+
 
 
                     output.close();

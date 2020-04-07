@@ -29,8 +29,11 @@ public class HomeActivity extends MenuBaseActivity
         get_nearest_training();
         if(this.next != null)
         {
+            //TODO: add title - nearest training
+            //TODO: add clock
+
             loadNextTraining();
-            Log.d("hihi","not heree");
+            Log.d("hihi","not here");
         }
         else
         {
@@ -41,17 +44,20 @@ public class HomeActivity extends MenuBaseActivity
     private void loadNextTraining() {
 
         LinearLayout l = (LinearLayout) findViewById(R.id.linearLayout1);
-        this.playersTexts = new TextView[this.players.length -1 ];
 
+        //load players
+        this.playersTexts = new TextView[this.players.length];
         for (int i = 0; i < this.players.length; i++) {
-            if(players(i) == )
-            String text = players[i];
-            this.playersTexts[i] = new TextView(this);
-            this.playersTexts[i].setText(text);
-            this.playersTexts[i].setTag("player" + i);
+            if(true)//players[i] !="ofir_shapira") //this_name
+            {
+                String text = players[i];
+                this.playersTexts[i] = new TextView(this);
+                this.playersTexts[i].setText(text);
+                this.playersTexts[i].setTag("player" + i);
 
-            this.playersTexts[i].setVisibility(View.VISIBLE);
-            l.addView(this.playersTexts[i]);
+                this.playersTexts[i].setVisibility(View.VISIBLE);
+                l.addView(this.playersTexts[i]);
+            }
         }
     }
 

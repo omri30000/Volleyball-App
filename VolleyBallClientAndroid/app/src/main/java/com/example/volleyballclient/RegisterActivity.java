@@ -27,7 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnSend = (Button) findViewById(R.id.button);
         sp = this.getSharedPreferences("values", 0);
         next = new Intent(this, HomeActivity.class);
-        //if olready registered
+        //if already register
         if(sp.getString("name",null) != null)
         {
             startActivity(next);
@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-
+                //TODO: fix: no empty name
                 String first = etFirstName.getText().toString().toLowerCase();
                 String second = etLastName.getText().toString().toLowerCase();
                 String name =first+ "_" + second;
@@ -54,6 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void onBackPressed() { }
+    public void onBackPressed() {
+
+    }
 
 }
