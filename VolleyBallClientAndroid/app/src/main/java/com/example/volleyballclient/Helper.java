@@ -2,6 +2,7 @@ package com.example.volleyballclient;
 
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,10 +13,13 @@ import java.net.Socket;
 
 public  class Helper {
     private static String st = "";
+
+
     /*
-name parameter is in structure "fName_Lname"
-returns the response of the server
- */
+    the function will send a message to the server and return the response
+    name parameter is in structure "fName_Lname"
+    returns the response of the server
+    */
     public static String sendMessage(final String msg)
     {
         //final String st = "";
@@ -27,7 +31,9 @@ returns the response of the server
                     //Replace below IP with the IP of that device in which server socket open.
                     //If you change port then change the port number in the server side code also.
                     Socket s = new Socket();//("176.230.142.214", 2019);
-                    s.connect(new InetSocketAddress("176.230.142.108",2019),1000);
+
+                    //TODO: change ip and port to be taken from strings
+                    s.connect(new InetSocketAddress("192.168.5.199", 2019),1000);
                     OutputStream out = s.getOutputStream();
                     PrintWriter output = new PrintWriter(out);
                     output.println(msg);

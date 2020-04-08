@@ -13,16 +13,16 @@
         android:theme="@style/AppTheme">
 
 
-        <activity android:name=".PasswordActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".PasswordActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".HomeActivity"/>
-        <activity android:name=".EnrollActivity"/>
+        <activity android:name=".EnrollActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".EnrollFriendActivity"/>
         <activity android:name=".ResponseActivity"/>
         <activity android:name=".DataActivity"/>

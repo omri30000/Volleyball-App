@@ -92,8 +92,6 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
             this.enrollFriend[i].setOnClickListener(this);
             this.enrollFriend[i].setVisibility(View.VISIBLE);
 
-
-
             this.internalLayout.addView(this.enrollMe[i]);
             this.internalLayout.addView(this.enrollFriend[i]);
         }
@@ -157,7 +155,7 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
 
     private void enrollTraining(final String name, int trainingId)
     {
-        String msg =  "$100#" + name + "#" + trainingId + "$\n";
+        String msg =  "$100#" + trainingId + "#" + name + "$\n";
 
         String response = Helper.sendMessage(msg);
 
@@ -173,6 +171,11 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
         }
     }
 
+    /*
+    the function will fill the object variable training with all the trainings that are currently available
+    input: none
+    output: none
+     */
     private void getOptionalTrainings()
     {
         String msg = "$200$";
@@ -203,15 +206,18 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
     }
 
     /*
-    structure of tag (type string): "Me/Friend<trainingId>"
+    structure of tag (type string): "Me/Friend<training iterator ID>"
     examples- "Me156", "Friend617"
      */
     @Override
     public void onClick(View v) {
         int trainingId = 0;
+
         if (v.getTag().toString().substring(0,2).equals("Me")) // enroll me was clicked
         {
-            trainingId = Integer.parseInt(v.getTag().toString().substring(2));
+            int iterID = Integer.parseInt(v.getTag().toString().substring(2));
+
+            trainingId = this.trainings[iterID].getTrainingId();
 
             //Enroll him to training
             SharedPreferences sp = v.getContext().getSharedPreferences("values",0);
@@ -224,13 +230,14 @@ public class EnrollActivity extends MenuBaseActivity implements View.OnClickList
         }
         else
         {
-            trainingId = Integer.parseInt(v.getTag().toString().substring(6));
+            trainingId = this.trainings[Integer.parseInt(v.getTag().toString().substring(6))].getTrainingId();
 
             //Enroll him to training
+
             Intent next = new Intent(this, EnrollFriendActivity.class);
+            next.putExtra("trainingId", trainingId);
             startActivity(next);
         }
-
     }
     //deny returning back
     public void onBackPressed() { }

@@ -44,14 +44,16 @@ public class HomeActivity extends MenuBaseActivity
         this.playersTexts = new TextView[this.players.length -1 ];
 
         for (int i = 0; i < this.players.length; i++) {
-            if(players(i) == )
-            String text = players[i];
+            if(true)//players(i) == )
+            {
+                String text = players[i];
             this.playersTexts[i] = new TextView(this);
             this.playersTexts[i].setText(text);
             this.playersTexts[i].setTag("player" + i);
 
             this.playersTexts[i].setVisibility(View.VISIBLE);
             l.addView(this.playersTexts[i]);
+            }
         }
     }
 
