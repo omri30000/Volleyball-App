@@ -7,7 +7,10 @@ The cient can:
   * register to trainings and get details about it
   * view his game stats
   * View his previous games
-  
+
+<b> Update will be published soon! <b>
+ 
+ 
 ## Using ##
 For using the app:
      * Search <b> Join Volley <b> in Play Store.
@@ -19,5 +22,3 @@ Please create a config.py file like that contains:
 
 
 
-
-<b> Update will be published soon! <b>
