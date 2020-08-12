@@ -1,6 +1,6 @@
 
-# Join Volley #
-## About ##
+# Join Volley 
+## About 
 A Server and Client for A volleyball Training app.
 
 The cient can:
@@ -11,7 +11,7 @@ The cient can:
 <b> Update will be published soon! <b>
  
  
-## Using ##
+## Using 
 For using the app:
      * Search <b> Join Volley <b> in Play Store.
  
